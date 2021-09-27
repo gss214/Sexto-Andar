@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{%block title%} Sobre {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Sobre</h1>
+    <ul>
+        <p>
+            {% for name in names %}
+            <li> {{name}} </li>
+            {% endfor %}
+        </ul>
+    </p>
+</div>
+
+{% endblock %}

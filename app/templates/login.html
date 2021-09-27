@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{%block title%} Login {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <h1>Login Page</h1>
+    <br/><br/>
+    
+    <form action="/login" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="InputUsuario" aria-describedby="emailHelp" name="InputUsuario" value="">
+        <div id="emailHelp" class="form-text"></div>
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input type="password" class="form-control" id="InputSenha" name="InputSenha">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+</div>
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ error_statement }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{%block title%} Sexto Andar! {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Apartamentos disponiveis</h1>
+  <br/><br/>
+
+  {% for apt in apts %}
+    <img src="static/imgs/apt.jpeg" width="300">
+    <li> ID: {{apt['ID']}} </li>
+    <li> Nome: {{apt['Nome']}} </li>
+    <li> Quantidade de quartos: {{apt['Quartos']}} </li>
+    <br/><br/>
+  {% endfor %}
+</div>
+
+{% endblock %}

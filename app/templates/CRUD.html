@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{%block title%} Sexto Andar! {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1><center> CRUD</h1></center><br/><br/>
+  <h1><center> Tabela Apartamentos</h1></center>
+  <a href="#"><center>Adicionar Apartamento</center></a>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Quartos</th>
+      <th scope="col">Operações</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {% for apt in apts %}
+    <tr>
+      <th scope="row">{{apt['ID']}}</th>
+      <td>{{apt['Nome']}}</td>
+      <td>{{apt['Quartos']}}</td>
+      <td><a href="#">Alterar</a>
+          <a href="#">Remover</a>
+
+      
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  
+  
+  <h1><center> Tabela Usuarios</h1></center>
+  <a href="{{ url_for('add_user') }}"><center>Adicionar Usuario</center></a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Senha</th>
+      <th scope="col">Função</th>
+      <th scope="col">Logado?</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <th scope="row">{{user[0]}}</th>
+      <td>{{user[1]}}</td>
+      <td>{{user[2]}}</td>
+      <td>{{user[3]}}</td>
+      {% if user[4] %}
+        <td><img src="static/imgs/green_check.png" width="50"></td>
+      {% else %}
+        <td><img src="static/imgs/no_check.png" width="50"></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
