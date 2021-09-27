@@ -88,5 +88,5 @@ def login():
 
 
 if __name__ == '__main__':
-    app.config.from_object(config['development'])
+    app.config.from_object(config['developmentDuda'])
     app.run()

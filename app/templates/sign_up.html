@@ -99,13 +99,44 @@
             <label class="form-check-label" for="Cliente"> Cliente </label>
         </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="Corretor">
+            <input class="form-check-input" type="checkbox" value="" id="Corretor"/>
             <label class="form-check-label" for="Corretor"> Corretor </label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" value="" id="Proprietario">
             <label class="form-check-label" for="Proprietario"> Proprietário </label>
           </div>
+          
+          <div id="autoupdate" class="autoupdate">
+            <div class="mb-3">
+              <label class="form-label">Horario Inicial</label>
+              <input type="text" class="form-control" id="InputHorarioInicialCorretor" name="InputHorarioInicialCorretor">
+              <div id="HorarioInicialCorretor" class="form-text"></div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Horario Inicial</label>
+              <input type="text" class="form-control" id="InputHorarioFinalCorretor" name="InputHorarioFinalCorretor">
+              <div id="HorarioFinalCorretor" class="form-text"></div>
+            </div>
+
+          </div>
+
+        <script
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> 
+        </script>
+
+        <script>
+          $(document).ready(function () {
+            $('#autoupdate').hide();
+            $('#Corretor').change(function () {
+                if (this.checked) 
+                  $('#autoupdate').fadeIn('slow');
+                else 
+                    $('#autoupdate').fadeOut('slow');
+              });
+            });
+        </script>
 
         <p></p>
 
