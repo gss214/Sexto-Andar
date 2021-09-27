@@ -11,17 +11,19 @@
     
     <form action="/login" method="POST">
     <div class="mb-3">
-        <label class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="InputUsuario" aria-describedby="emailHelp" name="InputUsuario" value="">
+        <label class="form-label">User</label>
+        <input type="text" class="form-control" id="InputUser" aria-describedby="emailHelp" name="InputUser" value="">
         <div id="emailHelp" class="form-text"></div>
     </div>
     
     <div class="mb-3">
-        <label class="form-label">Senha</label>
-        <input type="password" class="form-control" id="InputSenha" name="InputSenha">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="InputPassword" name="InputPassword">
     </div>
     
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <!– ver depois como trocar a cor do sign up –>
+    <button type="submit" name="sign_in" class="btn btn-primary">Sign In</button>
+    <button type="submit" name="sign_up" class="btn btn-outline-primary">Sign Up</button>
 
 </form>
 

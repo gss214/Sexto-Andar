@@ -30,11 +30,11 @@
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('mostrar_apts') }}">Apartamentos</a>
+                        <a class="nav-link" href="#">Apartamentos</a>
                     </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    <a class="nav-link" href="#">Sobre</a>
                 </li>
                 {% if g.user %}
                 <li class="nav-item dropdown">
@@ -43,13 +43,13 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if g.user.0.3 == 'admin'%}
-                        <li><a class="dropdown-item" href="{{ url_for('CRUD') }}">CRUD</a></li>
+                        <li><a class="dropdown-item" href="#">CRUD</a></li>
                         {% endif %}
                         <li><a class="dropdown-item" href="#">Opção</a></li>
                         <li><a class="dropdown-item" href="#">Opção</a></li>
                         <li><a class="dropdown-item" href="#">Opção</a></li>
                       <li><a class="dropdown-item" href="#">Opção</a></li>
-                      <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                      <li><a class="dropdown-item" href="#">Logout</a></li>
                     </ul>
                   </li>
                 {% endif %}

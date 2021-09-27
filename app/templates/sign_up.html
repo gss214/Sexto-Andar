@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{%block title%} Sexto Andar! {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1><center>Adicionar Usuario</center></h1>
+
+    <form action="/sign_up" method="POST">
+        <div class="mb-3">
+           <label class="form-label">Nome</label>
+           <input type="text" class="form-control" id="InputName" name="InputName">
+           <div id="Name" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="name@example.com">
+            <div id="Email" class="form-text"></div>
+        </div>
+       
+        <div class="mb-3">
+           <label class="form-label">Senha</label>
+           <input type="password" class="form-control" id="InputSenha" name="InputSenha">
+           <div id="Password" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+           <label class="form-label">Data de Nascimento</label>
+           <input type="date" class="form-control" id="InputDateBirth" name="InputDateBirth">
+           <div id="DateBirth" class="form-text"></div>
+        </div>
+
+        <!– alterar depois o checkbox –>
+        <div><h5>Sexo</h5></div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" id="Feminino">
+            <label class="form-check-label" for="radio1">Feminino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" id="Masculino">
+            <label class="form-check-label" for="radio2">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" id="Outro">
+            <label class="form-check-label" for="radio3">Outro</label>
+          </div>
+
+        <p></p>
+
+        <div><h5>Endereço</h5></div>
+        
+        <div class="mb-3">
+            <label class="form-label">CEP</label>
+            <input type="text" class="form-control" id="InputCEP" name="InputCEP">
+            <div id="CEP" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Rua</label>
+            <input type="text" class="form-control" id="InputRua" name="InputRua">
+            <div id="Rua" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="InputBairro" name="InputBairro">
+            <div id="Bairro" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="InputCidade" name="InputCidade">
+            <div id="Cidade" class="form-text"></div>
+        </div>
+
+        <!– alterar depois obrigatoriedade dos bgl –>
+        <div class="mb-3">
+            <label class="form-label">Numero</label>
+            <input type="text" class="form-control" id="InputNumero" name="InputNumero">
+            <div id="Numero" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="InputComplemento" name="InputComplemento">
+            <div id="Complemento" class="form-text"></div>
+        </div>
+
+        <p></p>
+
+        <div><h5>Cadastrar como:</h5></div>
+        <!– alterar depois para corretor horario de trabalho –>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="Cliente">
+            <label class="form-check-label" for="Cliente"> Cliente </label>
+        </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="Corretor">
+            <label class="form-check-label" for="Corretor"> Corretor </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="Proprietario">
+            <label class="form-check-label" for="Proprietario"> Proprietário </label>
+          </div>
+
+        <p></p>
+
+       
+        <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" name="voltar" class="btn btn-primary">Voltar</button>
+
+        
+
+        <p><br></p>
+   
+    </form>
+</div>
+{% endblock %}
