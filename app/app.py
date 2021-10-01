@@ -24,28 +24,53 @@ def get_user():
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
-    if session and g.user[0][3] == 'admin':
-        if request.method == 'POST':
-            print(request.form)
-            if 'cadastrar' in request.form:
-                nome = request.form.get("InputUsuario")
-                senha = request.form.get("InputSenha")
-                funcao = request.form.get("InputFuncao")
-                try:
-                    cursor = cnx.connection.cursor()
-                    sql = f"INSERT INTO usuarios (nome, senha, permissao, login) VALUES ('{nome}', '{senha}', '{funcao}', {0})"
-                    cursor.execute(sql)
-                    cnx.connection.commit()
-                except Exception as ex:
-                    print(ex)
-            
-                return redirect('/CRUD')
-            else:
-                return redirect('/CRUD')
-        else:
-            return render_template('adicionar_usuario.html')
-    return "Você não tem permissão pra isso"
+    if request.method == 'POST':
+        print(request.form)
+        if 'cadastrar' in request.form:
 
+            # fazer a validacao dos dados para colocar no BD
+
+            name = request.form.get("InputName")
+            email = request.form.get("InputEmail")
+            password = request.form.get("InputPassword")
+            date_of_birth = request.form.get("InputDateBirth")
+            
+            #sexo 
+            fem = request.form.getlist('Feminino') 
+            masc = request.form.getlist('Masculino')
+            outro = request.form.getlist('Outro') 
+
+            #address
+            zip_code = request.form.get("InputZipcode")
+            street = request.form.get("InputStreet")
+            region = request.form.get("InputRegion")
+            city = request.form.get("InputDateCity")
+            number = request.form.get("InputNumber")
+            adress_complement = request.form.get("InputAddressComplement")
+
+            cliente = request.form.getlist('Cliente') 
+            corretor = request.form.getlist('Corretor')
+            proprietario = request.form.getlist('Proprietario') 
+
+            print(name, email, password, date_of_birth)
+            print(fem, masc, outro)
+            print(zip_code, street, region, city, number, adress_complement)
+            print(cliente, corretor, proprietario)
+            
+            # try:
+            #     cursor = cnx.connection.cursor()
+            #     sql = f"INSERT INTO usuarios (nome, senha, permissao, login) VALUES ('{nome}', '{senha}', '{funcao}', {0})"
+            #     cursor.execute(sql)
+            #     cnx.connection.commit()
+            # except Exception as ex:
+            #     print(ex)
+        
+            return render_template('sign_up.html')
+        else:
+            return render_template('sign_up.html')
+    else:
+        return render_template('sign_up.html')
+  
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if request.method == 'POST':
