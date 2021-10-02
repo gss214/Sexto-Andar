@@ -7,6 +7,13 @@
 <div class="container">
     <h1><center>Adicionar Usuario</center></h1>
 
+    {% if error_statement %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ error_statement }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
     <form action="/sign_up" method="POST">
         <div class="mb-3">
            <label class="form-label">Nome</label>
@@ -149,8 +156,6 @@
        
         <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
         <button type="submit" name="voltar" class="btn btn-primary">Voltar</button>
-
-        
 
         <p><br></p>
    

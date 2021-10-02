@@ -39,17 +39,13 @@
                 {% if g.user %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{g.user.0.1}}
+                      {{g.user.1}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if g.user.0.3 == 'admin'%}
+                        {% if g.user.0 == 'admin'%}
                         <li><a class="dropdown-item" href="#">CRUD</a></li>
                         {% endif %}
-                        <li><a class="dropdown-item" href="#">Opção</a></li>
-                        <li><a class="dropdown-item" href="#">Opção</a></li>
-                        <li><a class="dropdown-item" href="#">Opção</a></li>
-                      <li><a class="dropdown-item" href="#">Opção</a></li>
-                      <li><a class="dropdown-item" href="#">Logout</a></li>
+                      <li><a class="dropdown-item" href="{{ url_for('logout')}}">Logout</a></li>
                     </ul>
                   </li>
                 {% endif %}
