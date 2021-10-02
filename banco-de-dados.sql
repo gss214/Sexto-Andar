@@ -1,18 +1,21 @@
 create database sextoandar;
 use sextoandar;
 
+drop database sextoandar;
+
 create table endereco (
-	CEP varchar(8) primary key not null,
+	codigo int primary key not null auto_increment,
+	CEP varchar(8) not null,
     rua varchar(30) not null,
     bairro varchar(30) not null,
     cidade varchar(30) not null,
-    numero int,
-    complemento varchar(30) 
+    numero int not null,
+    complemento varchar(30) not null
 );
 
 create table login(
 	codigo int primary key not null auto_increment,
-	email varchar(30) not null,
+	email varchar(30) not null unique,
     senha varchar(256) not null
 );
 
@@ -31,8 +34,8 @@ create table cliente (
     nome varchar(50) not null,
     data_de_nascimento date not null,
     sexo varchar(10) not null,
-    fk_endereco varchar(8) not null,
-    foreign key (fk_endereco) references endereco(cep)
+    fk_endereco int not null,
+    foreign key (fk_endereco) references endereco(codigo)
     on delete cascade
     on update cascade
 );
@@ -42,8 +45,8 @@ create table proprietario(
     nome varchar(50) not null,
     data_de_nascimento date not null,
     sexo varchar(10) not null,
-    fk_endereco varchar(8) not null,
-    foreign key (fk_endereco) references endereco(cep)
+    fk_endereco int not null,
+    foreign key (fk_endereco) references endereco(codigo)
 	on delete cascade
     on update cascade
 );
@@ -74,8 +77,8 @@ create table caracteristicas(
 
 create table imovel(
 	codigo int primary key not null auto_increment,
-    fk_endereco varchar(8) not null,
-    foreign key (fk_endereco) references endereco(cep)
+    fk_endereco int not null,
+    foreign key (fk_endereco) references endereco(codigo)
 	on delete cascade
     on update cascade,
     fk_proprietario varchar(11) not null,
@@ -106,10 +109,8 @@ create table corretor(
     nome varchar(50) not null,
     data_de_nascimento date not null,
     sexo varchar(10) not null,
-    email varchar(30) not null,
-    senha varchar(256) not null,
-    fk_endereco varchar(8) not null,
-    foreign key (fk_endereco) references endereco(cep)
+    fk_endereco int not null,
+    foreign key (fk_endereco) references endereco(codigo)
 	on delete cascade
     on update cascade,
     horario_trabalho_inicio time not null,
@@ -165,3 +166,10 @@ create table contrato(
     forma_de_pagamento varchar(20) not null,
     duracao_meses int not null
 );
+
+select * from login;
+select * from permissao;
+select * from endereco;
+select * from corretor;
+select * from cliente;
+select * from proprietario;
