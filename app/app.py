@@ -72,7 +72,7 @@ def sign_up():
                 cursor = cnx.connection.cursor()
                 insert = f"INSERT INTO login(email, senha) VALUES ('{email}', '{password}')"
                 cursor.execute(insert)
-                cnx.connection.commit()
+                #cnx.connection.commit()
 
                 select = f"SELECT MAX(codigo) from login"
                 cursor.execute(select)
@@ -84,7 +84,7 @@ def sign_up():
                 insert = f"INSERT INTO endereco(CEP, rua, bairro, cidade, numero, complemento) \
                            VALUES('{zip_code}', '{street}', '{region}', '{city}', '{number}', '{adress_complement}')"
                 cursor.execute(insert)
-                cnx.connection.commit()
+                #cnx.connection.commit()
 
                 print("foi")
 
@@ -104,7 +104,7 @@ def sign_up():
                     insert = f"INSERT INTO cliente VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
                               '{id_adress}')"
                     cursor.execute(insert)
-                    cnx.connection.commit()
+                    #cnx.connection.commit()
 
                 if corretor.count("ON"):
                     permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{id_login}', 'corretor' )"
@@ -116,16 +116,18 @@ def sign_up():
                     insert = f"INSERT INTO corretor VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
                               '{id_adress}', '{horario_inicio}', '{horario_final}')"
                     cursor.execute(insert)
-                    cnx.connection.commit()
+                    #cnx.connection.commit()
     
                 if proprietario.count("ON"):
                     permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{id_login}', 'proprietario')"
                     cursor.execute(permission)
 
-                    insert = f"INSERT INTO cliente VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
+                    insert = f"INSERT INTO proprietario VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
                               '{id_adress}')"
                     cursor.execute(insert)
-                    cnx.connection.commit()
+                    #cnx.connection.commit()
+
+                cnx.connection.commit()
 
             except Exception as ex:
                 print(ex)
