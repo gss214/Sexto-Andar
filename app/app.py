@@ -22,6 +22,10 @@ def get_user():
     except Exception as ex:
         return None
 
+# quando clicar em cadastrar retornar uma tela de sucesso ou erro
+# modularizar as funcoes
+# se em alguma etapa de insert der erro, nao criar as tabelas anteriores
+# commit no final ?
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -31,6 +35,7 @@ def sign_up():
             # fazer a validacao dos dados para colocar no BD
 
             name = request.form.get("InputName")
+            cpf = request.form.get("InputCPF")
             email = request.form.get("InputEmail")
             password = request.form.get("InputPassword")
             date_of_birth = request.form.get("InputDateBirth")
@@ -38,13 +43,19 @@ def sign_up():
             #sexo 
             fem = request.form.getlist('Feminino') 
             masc = request.form.getlist('Masculino')
-            outro = request.form.getlist('Outro') 
+            outro = request.form.getlist('Outro')
+
+            sexo = ""
+
+            if fem.count('on'): sexo = "Feminino" 
+            elif masc.count('on'): sexo = "Masculino"
+            else: sexo = "Outro"
 
             #address
             zip_code = request.form.get("InputZipcode")
             street = request.form.get("InputStreet")
             region = request.form.get("InputRegion")
-            city = request.form.get("InputDateCity")
+            city = request.form.get("InputCity")
             number = request.form.get("InputNumber")
             adress_complement = request.form.get("InputAddressComplement")
 
@@ -52,18 +63,72 @@ def sign_up():
             corretor = request.form.getlist('Corretor')
             proprietario = request.form.getlist('Proprietario') 
 
-            print(name, email, password, date_of_birth)
-            print(fem, masc, outro)
-            print(zip_code, street, region, city, number, adress_complement)
             print(cliente, corretor, proprietario)
+
+            print(type(corretor))
+
             
-            # try:
-            #     cursor = cnx.connection.cursor()
-            #     sql = f"INSERT INTO usuarios (nome, senha, permissao, login) VALUES ('{nome}', '{senha}', '{funcao}', {0})"
-            #     cursor.execute(sql)
-            #     cnx.connection.commit()
-            # except Exception as ex:
-            #     print(ex)
+            try:
+                cursor = cnx.connection.cursor()
+                insert = f"INSERT INTO login(email, senha) VALUES ('{email}', '{password}')"
+                cursor.execute(insert)
+                cnx.connection.commit()
+
+                select = f"SELECT MAX(codigo) from login"
+                cursor.execute(select)
+                id_login = cursor.fetchone()
+                id_login = id_login[0]
+
+                print(id_login)
+
+                insert = f"INSERT INTO endereco(CEP, rua, bairro, cidade, numero, complemento) \
+                           VALUES('{zip_code}', '{street}', '{region}', '{city}', '{number}', '{adress_complement}')"
+                cursor.execute(insert)
+                cnx.connection.commit()
+
+                print("foi")
+
+                select = f"SELECT MAX(codigo) from endereco"
+                cursor.execute(select)
+                id_adress = cursor.fetchone()
+                id_adress = id_adress[0]
+
+
+                print(id_adress)
+
+
+                if cliente.count("ON"):
+                    permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{id_login}', 'cliente' )"
+                    cursor.execute(permission)
+
+                    insert = f"INSERT INTO cliente VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
+                              '{id_adress}')"
+                    cursor.execute(insert)
+                    cnx.connection.commit()
+
+                if corretor.count("ON"):
+                    permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{id_login}', 'corretor' )"
+                    cursor.execute(permission)
+
+                    horario_inicio = request.form.get("InputHorarioInicialCorretor")
+                    horario_final = request.form.get("InputHorarioFinalCorretor")
+
+                    insert = f"INSERT INTO corretor VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
+                              '{id_adress}', '{horario_inicio}', '{horario_final}')"
+                    cursor.execute(insert)
+                    cnx.connection.commit()
+    
+                if proprietario.count("ON"):
+                    permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{id_login}', 'proprietario')"
+                    cursor.execute(permission)
+
+                    insert = f"INSERT INTO cliente VALUES ('{cpf}', '{name}', '{date_of_birth}', '{sexo}', \
+                              '{id_adress}')"
+                    cursor.execute(insert)
+                    cnx.connection.commit()
+
+            except Exception as ex:
+                print(ex)
         
             return render_template('sign_up.html')
         else:
