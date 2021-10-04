@@ -70,7 +70,7 @@ def logout():
     user = g.user[1]
     session.pop('user_id', None)
     return render_template('logout.html', user=user)
-
+    
 if __name__ == '__main__':
     app.config.from_object(config['developmentDuda'])
     app.run()

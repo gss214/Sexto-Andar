@@ -8,4 +8,4 @@ app.secret_key = '123456789'
 cnx = MySQL(app)
 
 from app.models import login_dao, cliente_dao, endereco_dao, usuario_dao
-from app.controllers import default, login
+from app.controllers import default, login, crud

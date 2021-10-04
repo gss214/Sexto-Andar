@@ -1,5 +1,6 @@
 from app import app, cnx
 from flask import request, render_template, session, g
+from werkzeug.utils import redirect
 from app.models.cliente_dao import ClienteDAO
 from app.models.corretor_dao import Corretor, CorretorDAO
 
@@ -95,7 +96,7 @@ def sign_up():
                 
             return render_template('sign_up_sucesso.html')
         else:
-            return render_template('login.html')
+            return redirect('/login')
     else:
         return render_template('sign_up.html')
 
@@ -104,9 +105,8 @@ def sign_up():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if request.method == 'POST':
-
         if 'sign_up' in request.form:
-            return render_template("sign_up.html")
+            return redirect("/sign_up")
         else:
             # pega o usuario e senha do login.html
             email = request.form.get("InputEmail")
