@@ -14,24 +14,16 @@ class EnderecoDAO:
         pass
 
     def create(self, cursor, endereco):
-        print(1)
         data = {'CEP': endereco.CEP, 'rua': endereco.rua, 'bairro': endereco.bairro,
                 'cidade': endereco.cidade, 'numero': endereco.numero, 'complemento': endereco.complemento}
-        print(2)
         sql = "INSERT INTO endereco(CEP, rua, bairro, cidade, numero, complemento) \
                VALUES (%(CEP)s, %(rua)s, %(bairro)s, %(cidade)s, %(numero)s, %(complemento)s)"
-        print(3)
         cursor.execute(sql, data)
-        print(4)
 
         sql_max = f"SELECT MAX(codigo) from endereco"
-        print(5)
         cursor.execute(sql_max)
-        print(6)
         id_adress = cursor.fetchone()
-        print(7)
         endereco.codigo = id_adress[0]
-        print(8)
 
     def update(self, cursor, endereco, codigo):
         data = {'codigo': codigo, 'CEP': endereco.CEP, 'rua': endereco.rua, 'bairro': endereco.bairro,

@@ -49,8 +49,10 @@
                       {{g.user.1}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if g.user.0 == 'admin'%}
-                        <li><a class="dropdown-item" href="#">CRUD</a></li>
+                        {% if g.permission[1] == 'adm'%}
+                        <li><a class="dropdown-item" href="{{ url_for('crud')}}">CRUD</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{{ url_for('perfil')}}">Editar Perfil</a></li>
                         {% endif %}
                       <li><a class="dropdown-item" href="{{ url_for('logout')}}">Logout</a></li>
                     </ul>

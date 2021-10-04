@@ -2,7 +2,6 @@
 
 {%block title%} Sexto Andar! {% endblock %}
 
-
 {% block content %}
 
 <div class="container">
@@ -101,11 +100,11 @@
           var row = '<tr>' +
               '<td><input type="text" class="form-control" name="cpf" id="cpf"></td>' +
               '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-              '<td><input type="text" class="form-control" name="date_of_birth" id="date_of_birth"></td>' +
+              '<td><input type="date" class="form-control" name="date_of_birth" id="date_of_birth"></td>' +
               '<td><input type="text" class="form-control" name="sexo" id="sexo"></td>' +
               '<td><input type="text" class="form-control" name="adress" id="adress"></td>' +
-              '<td><input type="text" class="form-control" name="HorarioInicial" id="HorarioInicial"></td>' +
-              '<td><input type="text" class="form-control" name="Horarario Final" id="Horarario Final"></td>' +
+              '<td><input type="time" class="form-control" name="HorarioInicial" id="HorarioInicial"></td>' +
+              '<td><input type="time" class="form-control" name="Horarario Final" id="Horarario Final"></td>' +
               '<td>' + actions + '</td>' +
           '</tr>';
         $("table").append(row);		
