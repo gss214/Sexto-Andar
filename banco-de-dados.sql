@@ -37,8 +37,13 @@ create table cliente (
     fk_endereco int not null,
     foreign key (fk_endereco) references endereco(codigo)
     on delete cascade
+    on update cascade,
+    fk_login int not null,
+    foreign key (fk_login) references login(codigo)
+    on delete cascade
     on update cascade
 );
+
 
 create table proprietario(
 	cpf varchar(11) primary key not null,
@@ -48,6 +53,10 @@ create table proprietario(
     fk_endereco int not null,
     foreign key (fk_endereco) references endereco(codigo)
 	on delete cascade
+    on update cascade,
+    fk_login int not null,
+    foreign key (fk_login) references login(codigo)
+    on delete cascade
     on update cascade
 );
 
@@ -113,6 +122,10 @@ create table corretor(
     foreign key (fk_endereco) references endereco(codigo)
 	on delete cascade
     on update cascade,
+    fk_login int not null,
+    foreign key (fk_login) references login(codigo)
+    on delete cascade
+    on update cascade,
     horario_trabalho_inicio time not null,
     horario_trabalho_final time not null
 );
@@ -173,3 +186,8 @@ select * from endereco;
 select * from corretor;
 select * from cliente;
 select * from proprietario;
+
+INSERT INTO login(email, senha) VALUES ('duda@adm.com', '12345');
+INSERT INTO permissao(fk_login, tipo) VALUES (1, 'adm');
+INSERT INTO login(email, senha) VALUES ('gui@adm.com', '12345');
+INSERT INTO permissao(fk_login, tipo) VALUES (2, 'adm');
