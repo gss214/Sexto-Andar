@@ -6,11 +6,12 @@ drop database sextoandar;
 create table endereco (
 	codigo int primary key not null auto_increment,
 	CEP varchar(8) not null,
-    rua varchar(30) not null,
-    bairro varchar(30) not null,
-    cidade varchar(30) not null,
+    rua varchar(50) not null,
+    bairro varchar(50) not null,
+    cidade varchar(50) not null,
+    estado varchar(50) not null,
     numero int not null,
-    complemento varchar(30) not null
+    complemento varchar(50) not null
 );
 
 create table login(
@@ -43,7 +44,6 @@ create table cliente (
     on delete cascade
     on update cascade
 );
-
 
 create table proprietario(
 	cpf varchar(11) primary key not null,
@@ -179,15 +179,3 @@ create table contrato(
     forma_de_pagamento varchar(20) not null,
     duracao_meses int not null
 );
-
-select * from login;
-select * from permissao;
-select * from endereco;
-select * from corretor;
-select * from cliente;
-select * from proprietario;
-
-INSERT INTO login(email, senha) VALUES ('duda@adm.com', '12345');
-INSERT INTO permissao(fk_login, tipo) VALUES (1, 'adm');
-INSERT INTO login(email, senha) VALUES ('gui@adm.com', '12345');
-INSERT INTO permissao(fk_login, tipo) VALUES (2, 'adm');

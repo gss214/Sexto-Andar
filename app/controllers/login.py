@@ -39,11 +39,11 @@ def from_form_to_endereco(request):
     rua = request.form.get("InputStreet")
     bairro = request.form.get("InputRegion")
     cidade = request.form.get("InputCity")
+    estado = request.form.getlist('estado')[0]
     numero = request.form.get("InputNumber")
     complemento = request.form.get("InputAddressComplement")
 
-    return Endereco(codigo, CEP, rua, bairro, cidade, numero, complemento)
-
+    return Endereco(codigo, CEP, rua, bairro, cidade, estado, numero, complemento)
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
@@ -60,9 +60,7 @@ def sign_up():
             cliente = request.form.getlist('Cliente') 
             corretor = request.form.getlist('Corretor')
             proprietario = request.form.getlist('Proprietario') 
-
             print(cliente, corretor, proprietario)
-
             
             try:
                 cursor = cnx.connection.cursor()
@@ -101,6 +99,7 @@ def sign_up():
                 cnx.connection.commit()
 
             except Exception as ex:
+                print(ex)
                 return render_template('sign_up.html', error_statement=ex)
                 
             return render_template('sign_up_sucesso.html')
