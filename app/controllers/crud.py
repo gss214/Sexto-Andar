@@ -21,6 +21,6 @@ def perfil():
     cliente = cursor.fetchone()
 
     endereco = EnderecoDAO().find_by_id(cursor, cliente[4])
-    endereco = [endereco.CEP, endereco.rua, endereco.bairro, endereco.cidade, endereco.numero, endereco.complemento]
+    endereco = [endereco.CEP, endereco.rua, endereco.bairro, endereco.cidade, endereco.estado, endereco.numero, endereco.complemento]
 
     return render_template("perfil.html", cliente=cliente, login=login, endereco=endereco)

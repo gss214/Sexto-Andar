@@ -9,143 +9,20 @@
 </div>
 
 <style>
-    .table-wrapper {
-        width: 1000px;
-        margin: 30px auto;
-        background: #fff;
-        padding: 20px;	
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    }
-    .table-title {
-        padding-bottom: 10px;
-        margin: 0 0 10px;
-    }
-    .table-title h2 {
-        margin: 6px 0 0;
-        font-size: 22px;
-    }
-    .table-title .add-new {
-        float: right;
-        height: 30px;
-        font-weight: bold;
-        font-size: 12px;
-        text-shadow: none;
-        min-width: 100px;
-        border-radius: 50px;
-        line-height: 13px;
-    }
-    .table-title .add-new i {
-        margin-right: 4px;
-    }
-    table.table {
-        table-layout: fixed;
-    }
-    table.table tr th, table.table tr td {
-        border-color: #e9e9e9;
-    }
-    table.table th i {
-        font-size: 13px;
-        margin: 0 10px;
-        cursor: pointer;
-    }
-    table.table th:last-child {
-        width: 100px;
-    }
-    table.table td a {
-        cursor: pointer;
-        display: inline-block;
-        margin: 0 5px;
-        min-width: 24px;
-    }    
-    table.table td a.add {
-        color: #27C46B;
-    }
-    table.table td a.edit {
-        color: #FFC107;
-    }
-    table.table td a.delete {
-        color: #E34724;
-    }
-    table.table td i {
-        font-size: 19px;
-    }
-    table.table td a.add i {
-        font-size: 24px;
-        margin-right: -1px;
-        position: relative;
-        top: 3px;
-    }    
-    table.table .form-control {
-        height: 32px;
-        line-height: 32px;
-        box-shadow: none;
-        border-radius: 2px;
-    }
-    table.table .form-control.error {
-        border-color: #f50000;
-    }
-    table.table td .add {
-        display: none;
-    }
-</style>
-
-<script>
-    $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();
-      var actions = $("table td:last-child").html();
-      // Append table with add row form on add new button click
-        $(".add-new").click(function(){
-        $(this).attr("disabled", "disabled");
-        var index = $("table tbody tr:last-child").index();
-            var row = '<tr>' +
-                '<td>{{cliente[0]}}</td>' +
-                '<td>{{cliente[1]}}</td>' +
-                '<td>{{login[0]}}</td>' +
-                '<td>{{login[1]}}</td>' +
-                '<td>{{cliente[2]}}</td>' +
-                '<td>{{cliente[3]}}</td>' +
-                '<td>' + actions + '</td>' +
-            '</tr>';
-          $("table").append(row);		
-        $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-      // Add row on add button click
-      $(document).on("click", ".add", function(){
-        var empty = false;
-        var input = $(this).parents("tr").find('input[type="text"]');
-            input.each(function(){
-          if(!$(this).val()){
-            $(this).addClass("error");
-            empty = true;
-          } else{
-                    $(this).removeClass("error");
-                }
-        });
-        $(this).parents("tr").find(".error").first().focus();
-        if(!empty){
-          input.each(function(){
-            $(this).parent("td").html($(this).val());
-          });			
-          $(this).parents("tr").find(".add, .edit").toggle();
-          $(".add-new").removeAttr("disabled");
-        }		
-        });
-      // Edit row on edit button click
-      $(document).on("click", ".edit", function(){		
-            $(this).parents("tr").find("td:not(:last-child)").each(function(){
-          $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-        });		
-        $(this).parents("tr").find(".add, .edit").toggle();
-        $(".add-new").attr("disabled", "disabled");
-        });
-      // Delete row on delete button click
-      $(document).on("click", ".delete", function(){
-            $(this).parents("tr").remove();
-        $(".add-new").removeAttr("disabled");
-        });
-    });
-  </script>
+  .btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+  }
+  </style>
 
 <div class="container">
 <table class="table">
@@ -169,9 +46,8 @@
         <td>{{cliente[2]}}</td>
         <td>{{cliente[3]}}</td>
         <td>
-            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+            <a class="edit" title="Edit" data-toggle="modal" data-target="#EditarDadosCliente" href="#" role="button" ><i class="material-icons">&#xE254;</i></a>
+            <a class="delete" title="Delete" data-toggle="tooltip" href="#" role="button"><i class="material-icons">&#xE872;</i></a>
         </td>
       </tr>
     </tbody>
@@ -186,6 +62,7 @@
         <th scope="col">Rua</th>
         <th scope="col">Bairro</th>
         <th scope="col">Cidade</th>
+        <th scope="col">Estado</th>
         <th scope="col">Numero</th>
         <th scope="col">Complemento</th>
         <th scope="col">Ação</th>
@@ -199,14 +76,168 @@
         <td>{{endereco[3]}}</td>
         <td>{{endereco[4]}}</td>
         <td>{{endereco[5]}}</td>
+        <td>{{endereco[6]}}</td>
         <td>
-            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+          <a class="edit" title="Edit" data-toggle="modal" data-target="#EditarEndereco" href="#" role="button" ><i class="material-icons">&#xE254;</i></a>
+          <a class="delete" title="Delete" data-toggle="tooltip" href="#" role="button"><i class="material-icons">&#xE872;</i></a>
         </td>
       </tr>
     </tbody>
 </table>
+</div>
+
+
+<div class="modal fade" id="EditarDadosCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="EditarDadosClienteLabel">Editar Perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="POST">
+          <div class="mb-3">
+             <label class="form-label">Nome</label>
+             <input type="text" class="form-control" id="InputName" name="InputName">
+             <div id="Name" class="form-text"></div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input type="text" class="form-control" id="InputCPF" name="InputCPF">
+            <div id="CPF" class="form-text"></div>
+         </div>
+  
+          <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="name@example.com">
+              <div id="Email" class="form-text"></div>
+          </div>
+         
+          <div class="mb-3">
+             <label class="form-label">Senha</label>
+             <input type="password" class="form-control" id="InputPassword" name="InputPassword">
+             <div id="Password" class="form-text"></div>
+          </div>
+  
+          <div class="mb-3">
+             <label class="form-label">Data de Nascimento</label>
+             <input type="date" class="form-control" id="InputDateBirth" name="InputDateBirth">
+             <div id="DateBirth" class="form-text"></div>
+          </div>
+  
+          <div><h5>Sexo</h5></div>
+  
+          <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="Feminino" id="Feminino">
+              <label class="form-check-label" for="radio1">Feminino</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="Masculino" id="Masculino">
+              <label class="form-check-label" for="radio2">Masculino</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="Outro" id="Outro">
+              <label class="form-check-label" for="radio3">Outro</label>
+            </div>
+        </form>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="EditarEndereco" tabindex="-1" role="dialog" aria-labelledby="EditarEndereco" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="EditarEnderecoLabel">Editar Endereço</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="POST">          
+          <div class="mb-3">
+              <label class="form-label">CEP</label>
+              <input type="text" class="form-control" id="InputZipcode" name="InputZipcode">
+              <div id="CEP" class="form-text"></div>
+          </div>
+        
+          <div class="mb-3">
+              <label class="form-label">Rua</label>
+              <input type="text" class="form-control" id="InputStreet" name="InputStreet">
+              <div id="Rua" class="form-text"></div>
+          </div>
+        
+          <div class="mb-3">
+              <label class="form-label">Bairro</label>
+              <input type="text" class="form-control" id="InputRegion" name="InputRegion">
+              <div id="Bairro" class="form-text"></div>
+          </div>
+        
+          <div class="mb-3">
+              <label class="form-label">Cidade</label>
+              <input type="text" class="form-control" id="InputCity" name="InputCity">
+              <div id="Cidade" class="form-text"></div>
+            </div>
+        
+          <select class="form-select" aria-label="Default select example" name="estado">
+            <option selected>Estado</option>
+            <option value="acre">Acre</option>
+            <option value="alagoas">Alagoas</option>
+            <option value="amapa">Amapá</option>
+            <option value="amazonas">Amazonas</option>
+            <option value="bahia">Bahia</option>
+            <option value="ceara">Ceará</option>
+            <option value="espirito santo">Espírito Santo</option>
+            <option value="goias">Goiás</option>
+            <option value="distrito federal">Distrito Federal</option>
+            <option value="maranhao">Maranhão</option>
+            <option value="mato grosso">Mato Grosso</option>
+            <option value="mato grosso do sul">Mato Grosso do Sul</option>
+            <option value="Minas Gerais">Minas Gerais</option>
+            <option value="para">Pará</option>
+            <option value="paraiba">Paraiba</option>
+            <option value="parana">Paraná</option>
+            <option value="pernambuco">Pernambuco</option>
+            <option value="piaui">Piauí</option>
+            <option value="rio de janeiro">Rio de Janeiro</option>
+            <option value="rio grande do norte">Rio Grande do Norte</option>
+            <option value="rio grande do sul">Rio Grande do Sul</option>
+            <option value="rondonia">Rondônia</option>
+            <option value="Roraima">Roraima</option>
+            <option value="santa catarina">Santa Catarina</option>
+            <option value="sao paulo">São Paulo</option>
+            <option value="sergipe">Sergipe</option>
+            <option value="tocantins">Tocantins</option>
+          </select>
+          
+          <div class="mb-3">
+              <label class="form-label">Numero</label>
+              <input type="text" class="form-control" id="InputNumber" name="InputNumber">
+              <div id="Numero" class="form-text"></div>
+          </div>
+        
+          <div class="mb-3">
+              <label class="form-label">Complemento</label>
+              <input type="text" class="form-control" id="InputAddressComplement" name="InputAddressComplement">
+              <div id="Complemento" class="form-text"></div>
+          </div>
+        </form>        
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 {% endblock %}
