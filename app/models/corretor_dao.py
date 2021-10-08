@@ -20,7 +20,7 @@ class CorretorDAO:
         cursor.execute(sql, data)
 
     def update(self, cursor, corretor, cpf):
-        data = {'cpf': corretor.cpf, 'nome': corretor.nome, 'data_de_nascimento': corretor.data_de_nascimento,
+        data = {'cpf': cpf, 'nome': corretor.nome, 'data_de_nascimento': corretor.data_de_nascimento,
                 'sexo': corretor.sexo, 'fk_endereco': corretor.fk_endereco, 'fk_login': corretor.fk_login, 
                 'horario_trabalho_inicio': corretor.horario_trabalho_inicio, 'horario_trabalho_final': corretor.horario_trabalho_final}
         sql = "UPDATE corretor SET nome = %(nome)s, data_de_nascimento = %(data_de_nascimento)s, \

@@ -1,3 +1,4 @@
+import re
 from app import app, cnx
 from flask import request, render_template, session
 from werkzeug.utils import redirect
@@ -11,15 +12,46 @@ from app.models.proprietario_dao import ProprietarioDAO
 @app.route("/crud")
 @auth.has_permission(['adm'])
 def crud():
+    return render_template("crud.html")
 
-    cursor = cnx.connection.cursor()
+@app.route("/crud_corretor", methods = ['GET', 'DELETE', 'PUT', 'POST'])
+@auth.has_permission(['adm'])
+def crud_corretor():
+
+    cursor = cnx.connection.cursor()       
+
+    if request.method == 'DELETE':
+        #data = request.get_data(as_text=True)
+        data = request.get_json()
+        CorretorDAO().delete(cursor, data['cpf'])
+        cnx.connection.commit()
+        return '304'
+
     corretores = CorretorDAO().find_all(cursor)
-    clientes = ClienteDAO().find_all(cursor)
-    proprietarios = ProprietarioDAO().find_all(cursor)
-    enderecos = EnderecoDAO().find_all(cursor)
+    #clientes = ClienteDAO().find_all(cursor)
+    #proprietarios = ProprietarioDAO().find_all(cursor)
+    #enderecos = EnderecoDAO().find_all(cursor)
 
-    return render_template("crud.html", corretores = corretores, clientes = clientes, proprietarios = proprietarios, 
-                            enderecos = enderecos)
+    return render_template("crud_corretor.html", corretores = corretores) 
+
+@app.route("/crud_cliente", methods = ['GET', 'DELETE', 'PUT', 'POST'])
+@auth.has_permission(['adm'])
+def crud_cliente():
+    cursor = cnx.connection.cursor()       
+
+    if request.method == 'DELETE':
+        #data = request.get_data(as_text=True)
+        data = request.get_json()
+        ClienteDAO().delete(cursor, data['cpf'])
+        cnx.connection.commit()
+        return '304'
+    
+
+    clientes = ClienteDAO().find_all(cursor)
+    #proprietarios = ProprietarioDAO().find_all(cursor)
+    #enderecos = EnderecoDAO().find_all(cursor)
+
+    return render_template("crud_cliente.html", clientes = clientes)
 
 def editar_endereco():
     pass
