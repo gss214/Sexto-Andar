@@ -21,6 +21,8 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ] Terminar CRUD cliente, proprientario, endereço
 
+- [ ] Adicionar try em todos os metodos que acessa o BD
+
 - [ ] Criar as views
 
 - [ ] Adicionar o blob da img do apt no BD
@@ -30,6 +32,10 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 ## Bugs
 
 - [ ] Bug do delete que fica pra sempre quando deleta algo do BD
+
+- [x] Bug no login, quando loga errado o retorno da msg eh o proprio erro
+
+- [x] Bug no botão voltar na página sign_up, ele não volta pro login
 
 ## Extras
 

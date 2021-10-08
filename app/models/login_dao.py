@@ -43,13 +43,16 @@ class LoginDAO:
         return login
 
     def find_without_id(self, cursor, email, senha):
-        sql = f"SELECT * FROM login where email = '{email}' AND senha = '{senha}'"
-        cursor.execute(sql)
-        result = cursor.fetchone()
+        try:
+            sql = f"SELECT * FROM login where email = '{email}' AND senha = '{senha}'"
+            cursor.execute(sql)
+            result = cursor.fetchone()
 
-        codigo, email, senha, permissao = result
-        login = Login(codigo, email, senha, permissao)
-        return login
+            codigo, email, senha, permissao = result
+            login = Login(codigo, email, senha, permissao)
+            return login
+        except:
+            return None
 
     def find_all(self, cursor):
         sql = "SELECT * FROM login"

@@ -13,6 +13,7 @@ from app.decorators import auth
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     # transformar para so um if
+    print(request.form)
     if request.method == 'POST':
         if 'cadastrar' in request.form:
 
@@ -51,8 +52,8 @@ def sign_up():
             return render_template('sign_up_sucesso.html')
         else:
             return redirect('/login')
-    else:
-        return render_template('sign_up.html')
+
+    return render_template('sign_up.html')
 
 '''
 @app.before_request
