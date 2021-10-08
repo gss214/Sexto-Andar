@@ -19,26 +19,25 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 ## TODO
 
-[] Terminar CRUD cliente, proprientario, endereço
+- [ ] Terminar CRUD cliente, proprientario, endereço
 
-[] Criar as views
+- [ ] Criar as views
 
-[] Adicionar o blob da img do apt no BD
+- [ ] Adicionar o blob da img do apt no BD
 
-[] Implementar a procedure
+- [ ] Implementar a procedure
 
 ## Bugs
 
-[] Bug do delete que fica pra sempre quando deleta algo do BD
+- [ ] Bug do delete que fica pra sempre quando deleta algo do BD
 
 ## Extras
 
-[] Adicionar confirmação ao remover do BD (tipo: "Vc tem certeza? Sim Nao")
+- [ ] Adicionar confirmação ao remover do BD (tipo: "Vc tem certeza? Sim Nao")
 
-[] Fazer uma página de anuncios
+- [ ] Fazer uma página de anuncios
 
-[] Exibir a img que ta no BD na pagina de anuncios
-
+- [ ] Exibir a img que ta no BD na pagina de anuncios
 
 ## Thoughts
 
