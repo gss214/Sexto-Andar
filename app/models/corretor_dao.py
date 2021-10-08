@@ -2,7 +2,7 @@ from app.models.usuario_dao import Usuario
 
 class Corretor(Usuario):
     def __init__(self, cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login, horario_trabalho_inicio, horario_trabalho_final):
-        super.__init__(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
+        super().__init__(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
         self.horario_trabalho_inicio = horario_trabalho_inicio
         self.horario_trabalho_final = horario_trabalho_final
 

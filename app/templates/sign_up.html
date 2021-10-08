@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container">
-    <h1><center>Adicionar Usuario</center></h1>
+    <h1 style="text-align:center">Adicionar Usuario</h1>
 
     {% if error_statement %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -15,156 +15,190 @@
     {% endif %}
 
     <form action="/sign_up" method="POST">
-        <div class="mb-3">
+
+      <div><h5>Dados Pessoais</h5></div>
+
+      <div class="row">
+
+        <div class="col">
            <label class="form-label">Nome</label>
-           <input type="text" class="form-control" id="InputName" name="InputName">
+           <input type="text" class="form-control" id="InputName" name="InputName" maxlength="50" required>
            <div id="Name" class="form-text"></div>
         </div>
 
-        <div class="mb-3">
+        <div class="col">
           <label class="form-label">CPF</label>
-          <input type="text" class="form-control" id="InputCPF" name="InputCPF">
+          <input type="text" class="form-control" id="InputCPF" name="InputCPF" maxlength="11" required>
           <div id="CPF" class="form-text"></div>
        </div>
 
-        <div class="mb-3">
+      </div>
+
+      <div class="row">
+
+        <div class="col">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="name@example.com">
+            <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="name@example.com" maxlength="30" required>
             <div id="Email" class="form-text"></div>
         </div>
        
-        <div class="mb-3">
+        <div class="col">
            <label class="form-label">Senha</label>
-           <input type="password" class="form-control" id="InputPassword" name="InputPassword">
+           <input type="password" class="form-control" id="InputPassword" name="InputPassword" maxlength="30" required>
            <div id="Password" class="form-text"></div>
         </div>
 
-        <div class="mb-3">
+      </div>
+
+      <div class="row">
+
+        <div class="col">
            <label class="form-label">Data de Nascimento</label>
-           <input type="date" class="form-control" id="InputDateBirth" name="InputDateBirth">
+           <input type="date" class="form-control" id="InputDateBirth" name="InputDateBirth" required>
            <div id="DateBirth" class="form-text"></div>
         </div>
 
-        <!– alterar depois o checkbox –>
-        <div><h5>Sexo</h5></div>
+        <div class="col"> <p>Sexo</p>
 
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Feminino" id="Feminino">
-            <label class="form-check-label" for="radio1">Feminino</label>
-          </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Masculino" id="Masculino">
-            <label class="form-check-label" for="radio2">Masculino</label>
+              <input class="form-check-input" type="radio" name="radiosexo" id="Feminino" value="Feminino">
+              <label class="form-check-label" for="Feminino">Feminino</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="radiosexo" id="Masculino" value="Masculino">
+              <label class="form-check-label" for="Masculino">Masculino</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="radiosexo" id="Outro" value="Outro">
+              <label class="form-check-label" for="Outro">Outro</label>
+            </div>
+
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Outro" id="Outro">
-            <label class="form-check-label" for="radio3">Outro</label>
-          </div>
+
+        </div>
 
         <p></p>
 
         <div><h5>Endereço</h5></div>
-        
-        <div class="mb-3">
+
+        <div class="row">
+
+          <div class="col-sm-2">
             <label class="form-label">CEP</label>
-            <input type="text" class="form-control" id="InputZipcode" name="InputZipcode">
+            <input type="text" class="form-control" id="InputZipcode" name="InputZipcode" maxlength="8" required>
             <div id="CEP" class="form-text"></div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label class="form-label">Rua</label>
-            <input type="text" class="form-control" id="InputStreet" name="InputStreet">
-            <div id="Rua" class="form-text"></div>
-        </div>
+          <div class="col-sm-5">
+              <label class="form-label">Rua</label>
+              <input type="text" class="form-control" id="InputStreet" name="InputStreet" maxlength="50" required>
+              <div id="Rua" class="form-text"></div>
+          </div>
 
-        <div class="mb-3">
-            <label class="form-label">Bairro</label>
-            <input type="text" class="form-control" id="InputRegion" name="InputRegion">
-            <div id="Bairro" class="form-text"></div>
-        </div>
+          <div class="col-sm-5">
+              <label class="form-label">Bairro</label>
+              <input type="text" class="form-control" id="InputRegion" name="InputRegion" maxlength="50" required>
+              <div id="Bairro" class="form-text"></div>
+          </div>
 
-        <div class="mb-3">
+        </div>
+        
+      
+      <div class="row">
+
+        <div class="col">
             <label class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="InputCity" name="InputCity">
+            <input type="text" class="form-control" id="InputCity" name="InputCity" maxlength="50" required>
             <div id="Cidade" class="form-text"></div>
           </div>
 
-        <select class="form-select" aria-label="Default select example" name="estado">
-          <option selected>Estado</option>
-          <option value="acre">Acre</option>
-          <option value="alagoas">Alagoas</option>
-          <option value="amapa">Amapá</option>
-          <option value="amazonas">Amazonas</option>
-          <option value="bahia">Bahia</option>
-          <option value="ceara">Ceará</option>
-          <option value="espirito santo">Espírito Santo</option>
-          <option value="goias">Goiás</option>
-          <option value="distrito federal">Distrito Federal</option>
-          <option value="maranhao">Maranhão</option>
-          <option value="mato grosso">Mato Grosso</option>
-          <option value="mato grosso do sul">Mato Grosso do Sul</option>
-          <option value="Minas Gerais">Minas Gerais</option>
-          <option value="para">Pará</option>
-          <option value="paraiba">Paraiba</option>
-          <option value="parana">Paraná</option>
-          <option value="pernambuco">Pernambuco</option>
-          <option value="piaui">Piauí</option>
-          <option value="rio de janeiro">Rio de Janeiro</option>
-          <option value="rio grande do norte">Rio Grande do Norte</option>
-          <option value="rio grande do sul">Rio Grande do Sul</option>
-          <option value="rondonia">Rondônia</option>
-          <option value="Roraima">Roraima</option>
-          <option value="santa catarina">Santa Catarina</option>
-          <option value="sao paulo">São Paulo</option>
-          <option value="sergipe">Sergipe</option>
-          <option value="tocantins">Tocantins</option>
-        </select>
+        <div class="col"> 
+          <label class="form-label">Estado</label>
 
-        <!– alterar depois obrigatoriedade dos bgl –>
-        <div class="mb-3">
+          <select class="form-select" aria-label="Default select example" name="estado" required>
+            <option selected>Estado</option>
+            <option value="acre">Acre</option>
+            <option value="alagoas">Alagoas</option>
+            <option value="amapa">Amapá</option>
+            <option value="amazonas">Amazonas</option>
+            <option value="bahia">Bahia</option>
+            <option value="ceara">Ceará</option>
+            <option value="espirito santo">Espírito Santo</option>
+            <option value="goias">Goiás</option>
+            <option value="distrito federal">Distrito Federal</option>
+            <option value="maranhao">Maranhão</option>
+            <option value="mato grosso">Mato Grosso</option>
+            <option value="mato grosso do sul">Mato Grosso do Sul</option>
+            <option value="Minas Gerais">Minas Gerais</option>
+            <option value="para">Pará</option>
+            <option value="paraiba">Paraiba</option>
+            <option value="parana">Paraná</option>
+            <option value="pernambuco">Pernambuco</option>
+            <option value="piaui">Piauí</option>
+            <option value="rio de janeiro">Rio de Janeiro</option>
+            <option value="rio grande do norte">Rio Grande do Norte</option>
+            <option value="rio grande do sul">Rio Grande do Sul</option>
+            <option value="rondonia">Rondônia</option>
+            <option value="Roraima">Roraima</option>
+            <option value="santa catarina">Santa Catarina</option>
+            <option value="sao paulo">São Paulo</option>
+            <option value="sergipe">Sergipe</option>
+            <option value="tocantins">Tocantins</option>
+          </select>
+
+        </div>
+
+        <div class="col">
             <label class="form-label">Numero</label>
-            <input type="text" class="form-control" id="InputNumber" name="InputNumber">
+            <input type="text" class="form-control" id="InputNumber" name="InputNumber" maxlength="50">
             <div id="Numero" class="form-text"></div>
         </div>
 
-        <div class="mb-3">
+        <div class="col">
             <label class="form-label">Complemento</label>
-            <input type="text" class="form-control" id="InputAddressComplement" name="InputAddressComplement">
+            <input type="text" class="form-control" id="InputAddressComplement" name="InputAddressComplement" maxlength="50">
             <div id="Complemento" class="form-text"></div>
         </div>
+
+      </div>
 
         <p></p>
 
         <div><h5>Cadastrar como:</h5></div>
         <!– alterar depois para corretor horario de trabalho –>
 
+
+  
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="ON" name="Cliente" id="Cliente">
+            <input class="form-check-input" type="radio" value="Cliente" name="tipo_usuario" id="Cliente">
             <label class="form-check-label" for="Cliente"> Cliente </label>
         </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="ON" name="Corretor" id="Corretor"/>
+            <input class="form-check-input" type="radio" value="Corretor" name="tipo_usuario" id="Corretor">
             <label class="form-check-label" for="Corretor"> Corretor </label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="ON" name = "Proprietario" id="Proprietario">
+            <input class="form-check-input" type="radio" value="Proprietario" name = "tipo_usuario" id="Proprietario">
             <label class="form-check-label" for="Proprietario"> Proprietário </label>
           </div>
           
-          <div id="autoupdate" class="autoupdate">
-            <div class="mb-3">
+          
+          <div id="autoupdate" class="autoupdate row">
+            <div class="col">
               <label class="form-label">Horario Inicial</label>
               <input type="time" class="form-control" id="InputHorarioInicialCorretor" name="InputHorarioInicialCorretor">
               <div id="HorarioInicialCorretor" class="form-text"></div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Horario Inicial</label>
+            <div class="col">
+              <label class="form-label">Horario Final</label>
               <input type="time" class="form-control" id="InputHorarioFinalCorretor" name="InputHorarioFinalCorretor">
               <div id="HorarioFinalCorretor" class="form-text"></div>
             </div>
 
           </div>
+
+          
 
         <script
           src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> 

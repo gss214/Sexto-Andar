@@ -1,49 +1,14 @@
 from app import app, cnx
 from flask import request, render_template, session, g
 from werkzeug.utils import redirect
-from app.models.cliente_dao import ClienteDAO
+from app.models.cliente_dao import Cliente, ClienteDAO
 from app.models.corretor_dao import Corretor, CorretorDAO
 
 from app.models.usuario_dao import Usuario
 from app.models.login_dao import Login, LoginDAO
 from app.models.endereco_dao import Endereco, EnderecoDAO
 from app.models.proprietario_dao import ProprietarioDAO
-
-def from_form_to_usuario(request):
-    nome = request.form.get("InputName")
-    cpf = request.form.get("InputCPF")
-    data_de_nascimento = request.form.get("InputDateBirth")
-    fk_endereco = None
-    fk_login = None
-
-    fem = request.form.getlist('Feminino') 
-    masc = request.form.getlist('Masculino')
-    sexo = ""
-
-    if fem.count('on'): sexo = "Feminino" 
-    elif masc.count('on'): sexo = "Masculino"
-    else: sexo = "Outro"
-
-    return Usuario(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
-
-def from_form_to_login(request):
-    codigo = None
-    email = request.form.get("InputEmail")
-    senha = request.form.get("InputPassword")
-
-    return Login(codigo, email, senha)
-
-def from_form_to_endereco(request):
-    codigo = None
-    CEP = request.form.get("InputZipcode")
-    rua = request.form.get("InputStreet")
-    bairro = request.form.get("InputRegion")
-    cidade = request.form.get("InputCity")
-    estado = request.form.getlist('estado')[0]
-    numero = request.form.get("InputNumber")
-    complemento = request.form.get("InputAddressComplement")
-
-    return Endereco(codigo, CEP, rua, bairro, cidade, estado, numero, complemento)
+from app.decorators import auth
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
@@ -56,11 +21,6 @@ def sign_up():
             usuario = from_form_to_usuario(request)
             login = from_form_to_login(request)
             endereco = from_form_to_endereco(request)             
-
-            cliente = request.form.getlist('Cliente') 
-            corretor = request.form.getlist('Corretor')
-            proprietario = request.form.getlist('Proprietario') 
-            print(cliente, corretor, proprietario)
             
             try:
                 cursor = cnx.connection.cursor()
@@ -69,31 +29,17 @@ def sign_up():
                 usuario.fk_endereco = endereco.codigo
                 usuario.fk_login = login.codigo
 
-                if cliente.count("ON"):
-                    permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{login.codigo}', 'cliente')"
-                    cursor.execute(permission)
-
+                if login.permissao == 'cliente':
                     ClienteDAO().create(cursor, usuario)
 
-                if corretor.count("ON"):
-
-                    # bug aqui
-                    permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{login.codigo}', 'corretor' )"
-                    cursor.execute(permission)
-
+                elif login.permissao == 'corretor':
                     horario_inicio = request.form.get("InputHorarioInicialCorretor")
                     horario_final = request.form.get("InputHorarioFinalCorretor")
-                    print(1)
                     corretor = Corretor(usuario.cpf, usuario.nome, usuario.data_de_nascimento, usuario.sexo,
                                         usuario.fk_endereco, usuario.fk_login, horario_inicio, horario_final)
-                    print(2)
                     CorretorDAO().create(cursor, corretor)
-                    print(3)
-    
-                if proprietario.count("ON"):
-                    permission = f"INSERT INTO permissao(fk_login, tipo) VALUES ('{login.codigo}', 'proprietario')"
-                    cursor.execute(permission)
-
+                    
+                else:
                     ProprietarioDAO().create(cursor, usuario)
 
                 cnx.connection.commit()
@@ -108,10 +54,16 @@ def sign_up():
     else:
         return render_template('sign_up.html')
 
+'''
 @app.before_request
 def before_request():
     if 'user_id' in session:
         try:
+
+
+            #### isso aqui nao precisa mais, podemos pegar o g.user no login
+            #### o g.permission vai sumir pq vai pro login (so vamos ter 1 permissao)
+
             cursor = cnx.connection.cursor()
             select = f"SELECT * FROM login where codigo = '{session['user_id']}'"
             cursor.execute(select)
@@ -124,11 +76,11 @@ def before_request():
             cursor.execute(sql)
             permission = cursor.fetchone()
 
-            g.user = user
+            g.user = login
             g.permission = permission
         except Exception as ex:
             print(ex)
-
+'''
 
 #login falta só olhar se o user tem permissao de admin para habilitar a pagina do CRUD 
 @app.route("/login", methods = ["GET", "POST"])
@@ -138,8 +90,11 @@ def login():
             return redirect("/sign_up")
         else:
             # pega o usuario e senha do login.html
-            email = request.form.get("InputEmail")
-            password = request.form.get("InputPassword")
+
+            login = from_form_to_login(request)
+
+            #email = request.form.get("InputEmail")
+            #password = request.form.get("InputPassword")
 
             # deleta a sessao de usuario online
             session.pop('user_id', None)    
@@ -147,20 +102,28 @@ def login():
             #verifica email == senha
             try:
                 cursor = cnx.connection.cursor()
-                select = f"SELECT * FROM login where email = '{email}' AND senha = '{password}'"
-                cursor.execute(select)
-                user =  cursor.fetchone()
 
-                print(user)
-                print(email, password)
+                login = LoginDAO().find_without_id(cursor, login.email, login.senha)
 
-                if not user:
+                #select = f"SELECT * FROM login where email = '{email}' AND senha = '{password}'"
+                #cursor.execute(select)
+                #user =  cursor.fetchone()
+
+                #print(user)
+                #print(email, password)
+
+                if not login:
                     return render_template("login.html", error_statement='Login invalido!')                
 
                 #cria a sessão do usuario
-                session['user_id'] = user[0]
+                #session['user_id'] = user[0]
+                session['user_id'] = login.codigo
+                session['user_email'] = login.email
+                session['user_permission'] = login.permissao
+                #g.user = login
 
-                return render_template("login_sucesso.html", user=user[1])
+                #return render_template("login_sucesso.html", user=user[1])
+                return render_template("login_sucesso.html", user=login.email)
             
             except Exception as ex:
                 return render_template("login.html", error_statement=ex)
@@ -168,7 +131,47 @@ def login():
         return render_template("login.html")
 
 @app.route('/logout')
+@auth.is_authenticated
 def logout():
-    user = g.user[1]
     session.pop('user_id', None)
-    return render_template('logout.html', user=user)
+    return render_template('logout.html', user=session['user_email'])
+
+
+def from_form_to_usuario(request):
+    nome = request.form.get("InputName")
+    cpf = request.form.get("InputCPF")
+    data_de_nascimento = request.form.get("InputDateBirth")
+    fk_endereco = None
+    fk_login = None
+
+    radio = request.form.get('radiosexo')
+
+    if radio == 'Feminino': sexo = "Feminino" 
+    elif radio == 'Maculino': sexo = "Masculino"
+    else: sexo = "Outro"
+
+    return Usuario(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
+
+def from_form_to_login(request):
+    codigo = None
+    email = request.form.get("InputEmail")
+    senha = request.form.get("InputPassword")
+    tipo_usuario = request.form.get("tipo_usuario")
+            
+    if tipo_usuario == 'Cliente': permissao = "cliente"
+    elif tipo_usuario == 'Corretor': permissao = "corretor"
+    else: permissao = "proprietario"       
+
+    return Login(codigo, email, senha, permissao)
+
+def from_form_to_endereco(request):
+    codigo = None
+    CEP = request.form.get("InputZipcode")
+    rua = request.form.get("InputStreet")
+    bairro = request.form.get("InputRegion")
+    cidade = request.form.get("InputCity")
+    estado = request.form.getlist('estado')[0]
+    numero = request.form.get("InputNumber")
+    complemento = request.form.get("InputAddressComplement")
+
+    return Endereco(codigo, CEP, rua, bairro, cidade, estado, numero, complemento)

@@ -2,7 +2,7 @@ from app.models.usuario_dao import Usuario
 
 class Cliente(Usuario):
     def __init__(self, cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login):
-        super.__init__(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
+        super().__init__(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
 
 # Cliente Padrao Data Access Object
 class ClienteDAO:
@@ -28,6 +28,15 @@ class ClienteDAO:
 
     def find_by_id(self, cursor, cpf):
         sql = f"SELECT * FROM cliente WHERE cpf = '{cpf}'"
+        cursor.execute(sql)
+        result = cursor.fetchone()
+
+        cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login = result
+        cliente = Cliente(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
+        return cliente
+
+    def find_by_fk(self, cursor, fk_login):
+        sql = f"SELECT * FROM cliente WHERE fk_login = {fk_login}"
         cursor.execute(sql)
         result = cursor.fetchone()
 

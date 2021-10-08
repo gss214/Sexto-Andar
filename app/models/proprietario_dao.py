@@ -2,7 +2,7 @@ from app.models.usuario_dao import Usuario
 
 class Proprietario(Usuario):
     def __init__(self, cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login):
-        super.__init__(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
+        super().__init__(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
 
 # Proprietario Padrao Data Access Object
 class ProprietarioDAO:

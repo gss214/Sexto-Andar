@@ -4,10 +4,22 @@ from werkzeug.utils import redirect
 from app.models.cliente_dao import ClienteDAO
 from app.models.login_dao import LoginDAO
 from app.models.endereco_dao import EnderecoDAO
+from app.decorators import auth
+from app.models.corretor_dao import CorretorDAO
+from app.models.proprietario_dao import ProprietarioDAO
 
 @app.route("/crud")
+@auth.has_permission(['adm'])
 def crud():
-    return render_template("crud.html")
+
+    cursor = cnx.connection.cursor()
+    corretores = CorretorDAO().find_all(cursor)
+    clientes = ClienteDAO().find_all(cursor)
+    proprietarios = ProprietarioDAO().find_all(cursor)
+    enderecos = EnderecoDAO().find_all(cursor)
+
+    return render_template("crud.html", corretores = corretores, clientes = clientes, proprietarios = proprietarios, 
+                            enderecos = enderecos)
 
 def editar_endereco():
     pass
@@ -21,9 +33,8 @@ def perfil():
         login = LoginDAO().find_by_id(cursor, session['user_id'])
         login = [login.email, login.senha]
 
-        sql = f"SELECT * FROM cliente WHERE fk_login = '{session['user_id']}'"
-        cursor.execute(sql)
-        cliente = cursor.fetchone()
+        cliente = ClienteDAO().find_by_fk(cursor, session['user_id'])
+        cliente = [cliente.cpf, cliente.nome, cliente.data_de_nascimento, cliente.sexo, cliente.fk_endereco, cliente.fk_login]
 
         endereco = EnderecoDAO().find_by_id(cursor, cliente[4])
         endereco = [endereco.CEP, endereco.rua, endereco.bairro, endereco.cidade, endereco.estado, endereco.numero, endereco.complemento]
