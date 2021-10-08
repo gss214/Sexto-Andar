@@ -37,7 +37,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [x] Bug no botão voltar na página sign_up, ele não volta pro login
 
-- [ ] Bug no sexo 🤪 (masculino ta sendo cadastrados como outros)
+- [x] Bug no sexo 🤪 (masculino ta sendo cadastrados como outros)
 
 - [ ] Bug no check do corretor, os horarios não somem quando muda o check pra cliente ou proprietario
 

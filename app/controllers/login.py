@@ -141,8 +141,8 @@ def from_form_to_usuario(request):
 
     radio = request.form.get('radiosexo')
 
-    if radio == 'Feminino': sexo = "Feminino" 
-    elif radio == 'Maculino': sexo = "Masculino"
+    if radio == 'Feminino': sexo = "feminino" 
+    elif radio == 'Masculino': sexo = "masculino"
     else: sexo = "Outro"
 
     return Usuario(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login)
