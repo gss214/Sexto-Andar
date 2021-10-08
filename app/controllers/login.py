@@ -13,45 +13,40 @@ from app.decorators import auth
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     # transformar para so um if
-    print(request.form)
     if request.method == 'POST':
-        if 'cadastrar' in request.form:
+        # fazer a validacao dos dados para colocar no BD
 
-            # fazer a validacao dos dados para colocar no BD
+        usuario = from_form_to_usuario(request)
+        login = from_form_to_login(request)
+        endereco = from_form_to_endereco(request)             
+        
+        try:
+            cursor = cnx.connection.cursor()
+            LoginDAO().create(cursor, login)
+            EnderecoDAO().create(cursor, endereco)
+            usuario.fk_endereco = endereco.codigo
+            usuario.fk_login = login.codigo
 
-            usuario = from_form_to_usuario(request)
-            login = from_form_to_login(request)
-            endereco = from_form_to_endereco(request)             
-            
-            try:
-                cursor = cnx.connection.cursor()
-                LoginDAO().create(cursor, login)
-                EnderecoDAO().create(cursor, endereco)
-                usuario.fk_endereco = endereco.codigo
-                usuario.fk_login = login.codigo
+            if login.permissao == 'cliente':
+                ClienteDAO().create(cursor, usuario)
 
-                if login.permissao == 'cliente':
-                    ClienteDAO().create(cursor, usuario)
-
-                elif login.permissao == 'corretor':
-                    horario_inicio = request.form.get("InputHorarioInicialCorretor")
-                    horario_final = request.form.get("InputHorarioFinalCorretor")
-                    corretor = Corretor(usuario.cpf, usuario.nome, usuario.data_de_nascimento, usuario.sexo,
-                                        usuario.fk_endereco, usuario.fk_login, horario_inicio, horario_final)
-                    CorretorDAO().create(cursor, corretor)
-                    
-                else:
-                    ProprietarioDAO().create(cursor, usuario)
-
-                cnx.connection.commit()
-
-            except Exception as ex:
-                print(ex)
-                return render_template('sign_up.html', error_statement=ex)
+            elif login.permissao == 'corretor':
+                horario_inicio = request.form.get("InputHorarioInicialCorretor")
+                horario_final = request.form.get("InputHorarioFinalCorretor")
+                corretor = Corretor(usuario.cpf, usuario.nome, usuario.data_de_nascimento, usuario.sexo,
+                                    usuario.fk_endereco, usuario.fk_login, horario_inicio, horario_final)
+                CorretorDAO().create(cursor, corretor)
                 
-            return render_template('sign_up_sucesso.html')
-        else:
-            return redirect('/login')
+            else:
+                ProprietarioDAO().create(cursor, usuario)
+
+            cnx.connection.commit()
+
+        except Exception as ex:
+            print(ex)
+            return render_template('sign_up.html', error_statement=ex)
+            
+        return render_template('sign_up_sucesso.html')
 
     return render_template('sign_up.html')
 
@@ -83,7 +78,6 @@ def before_request():
             print(ex)
 '''
 
-#login falta só olhar se o user tem permissao de admin para habilitar a pagina do CRUD 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if request.method == 'POST':
