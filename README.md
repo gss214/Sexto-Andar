@@ -37,6 +37,10 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [x] Bug no botão voltar na página sign_up, ele não volta pro login
 
+- [ ] Bug no sexo 🤪 (masculino ta sendo cadastrados como outros)
+
+- [ ] Bug no check do corretor, os horarios não somem quando muda o check pra cliente ou proprietario
+
 ## Extras
 
 - [ ] Adicionar confirmação ao remover do BD (tipo: "Vc tem certeza? Sim Nao")
@@ -48,3 +52,5 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 ## Thoughts
 
 - Quando adiciona um usuario via CRUD tem que adicionar o endereço antes, pensar em um jeito de deixar dinamico para nao dar ruim com os códigos de PK e FK
+
+- A ana falou para trocar sexo por gênero
