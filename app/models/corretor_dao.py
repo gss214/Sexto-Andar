@@ -19,12 +19,13 @@ class CorretorDAO:
                %(fk_login)s, %(horario_trabalho_inicio)s, %(horario_trabalho_final)s)"
         cursor.execute(sql, data)
 
+    # nao alteramos o cpf e as fks
     def update(self, cursor, corretor, cpf):
         data = {'cpf': cpf, 'nome': corretor.nome, 'data_de_nascimento': corretor.data_de_nascimento,
-                'sexo': corretor.sexo, 'fk_endereco': corretor.fk_endereco, 'fk_login': corretor.fk_login, 
-                'horario_trabalho_inicio': corretor.horario_trabalho_inicio, 'horario_trabalho_final': corretor.horario_trabalho_final}
+                'sexo': corretor.sexo, 'horario_trabalho_inicio': corretor.horario_trabalho_inicio,
+                'horario_trabalho_final': corretor.horario_trabalho_final}
         sql = "UPDATE corretor SET nome = %(nome)s, data_de_nascimento = %(data_de_nascimento)s, \
-               sexo = %(sexo)s, fk_endereco = %(fk_endereco)s, fk_login = %(fk_login)s, horario_trabalho_inicio = %(horario_trabalho_inicio)s, \
+               sexo = %(sexo)s, horario_trabalho_inicio = %(horario_trabalho_inicio)s, \
                horario_trabalho_final = %(horario_trabalho_final)s WHERE cpf = %(cpf)s"
         cursor.execute(sql, data)
 
@@ -37,9 +38,7 @@ class CorretorDAO:
         cursor.execute(sql)
         result = cursor.fetchone()
 
-        cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login, horario_trabalho_inicio, horario_trabalho_final = result
-        corretor = Corretor(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login, horario_trabalho_inicio, horario_trabalho_final)
-        return corretor
+        return result
 
     def find_all(self, cursor):
         sql = "SELECT * FROM corretor"

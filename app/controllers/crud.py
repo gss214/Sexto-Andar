@@ -6,7 +6,7 @@ from app.models.cliente_dao import ClienteDAO
 from app.models.login_dao import LoginDAO
 from app.models.endereco_dao import EnderecoDAO
 from app.decorators import auth
-from app.models.corretor_dao import CorretorDAO
+from app.models.corretor_dao import Corretor, CorretorDAO
 from app.models.proprietario_dao import ProprietarioDAO
 
 @app.route("/crud")
@@ -26,6 +26,23 @@ def crud_corretor():
         CorretorDAO().delete(cursor, data['cpf'])
         cnx.connection.commit()
         return '304'
+
+    if request.method == 'POST':
+        data = request.get_json()
+        corretor = Corretor(data['p0'], data['p1'], data['p2'], data['p3'], None, None, data['p4'], data['p5'])
+
+        c = CorretorDAO().find_by_id(cursor, corretor.cpf)
+
+        print(c)
+
+        # deletar o antigo depois ou bloquear o cpf
+        if c == None:
+            CorretorDAO().create(cursor, corretor)
+        else:
+            CorretorDAO().update(cursor, corretor, corretor.cpf)
+
+        cnx.connection.commit()
+        return '201'
 
     corretores = CorretorDAO().find_all(cursor)
     #clientes = ClienteDAO().find_all(cursor)
