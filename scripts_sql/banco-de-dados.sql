@@ -17,17 +17,8 @@ create table endereco (
 create table login(
 	codigo int primary key not null auto_increment,
 	email varchar(30) not null unique,
-    senha varchar(256) not null
-);
-
-# atributo multivalorado
-create table permissao(
-	fk_login int not null,
-    # admininistrador, cliente, proprietario, corretor 
-    tipo varchar(30) not null,
-    foreign key (fk_login) references login(codigo)
-    on delete cascade
-    on update cascade
+    senha varchar(256) not null,
+    permissao varchar(30) not null
 );
 
 create table cliente (
@@ -179,3 +170,30 @@ create table contrato(
     forma_de_pagamento varchar(20) not null,
     duracao_meses int not null
 );
+
+CREATE VIEW anuncio AS
+SELECT categoria.descricao as tipo, caracteristicas.descricao as descricao, quantidade_de_quartos, 
+quantidade_de_banheiros, quantidade_de_suites, area, vaga_garagem, aluguel, condominio, iptu, taxas, total as preco_total
+FROM categoria, caracteristicas, precos, imovel
+WHERE imovel.fk_caracteristicas = caracteristicas.codigo
+AND imovel.fk_categoria = categoria.codigo
+AND imovel.fk_preco = precos.codigo;
+
+SELECT * from anuncio;
+
+drop view anuncio;
+
+DELIMITER $$
+CREATE PROCEDURE `dadosProprietarioPorSexo` (Sexo varchar(30))
+BEGIN
+select cpf, nome, email, data_de_nascimento, sexo, CEP from proprietario, login, endereco
+where proprietario.sexo = Sexo
+and proprietario.fk_endereco = endereco.codigo
+and proprietario.fk_login = login.codigo;
+END $$
+DELIMITER ;
+
+call `dadosProprietarioPorSexo` ("feminino");
+call `dadosProprietarioPorSexo` ("masculino");
+
+drop procedure `dadosProprietarioPorSexo`;
