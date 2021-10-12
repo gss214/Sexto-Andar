@@ -19,7 +19,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 ## TODO
 
-- [ ] Terminar CRUD cliente, proprientario, endereço (Duda)
+- [x] Terminar CRUD cliente, proprientario, endereço (Duda)
 
 - [ ] Adicionar try em todos os metodos que acessa o BD (Gui)
 
