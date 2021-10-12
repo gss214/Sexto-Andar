@@ -50,34 +50,6 @@ def sign_up():
 
     return render_template('sign_up.html')
 
-'''
-@app.before_request
-def before_request():
-    if 'user_id' in session:
-        try:
-
-
-            #### isso aqui nao precisa mais, podemos pegar o g.user no login
-            #### o g.permission vai sumir pq vai pro login (so vamos ter 1 permissao)
-
-            cursor = cnx.connection.cursor()
-            select = f"SELECT * FROM login where codigo = '{session['user_id']}'"
-            cursor.execute(select)
-            user =  cursor.fetchone()
-            if not user:
-                return
-            #print(user)
-
-            sql = f"SELECT * FROM permissao WHERE fk_login = '{user[0]}'"
-            cursor.execute(sql)
-            permission = cursor.fetchone()
-
-            g.user = login
-            g.permission = permission
-        except Exception as ex:
-            print(ex)
-'''
-
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if request.method == 'POST':
@@ -88,9 +60,6 @@ def login():
 
             login = from_form_to_login(request)
 
-            #email = request.form.get("InputEmail")
-            #password = request.form.get("InputPassword")
-
             # deleta a sessao de usuario online
             session.pop('user_id', None)    
 
@@ -100,24 +69,13 @@ def login():
 
                 login = LoginDAO().find_without_id(cursor, login.email, login.senha)
 
-                #select = f"SELECT * FROM login where email = '{email}' AND senha = '{password}'"
-                #cursor.execute(select)
-                #user =  cursor.fetchone()
-
-                #print(user)
-                #print(email, password)
-
                 if not login:
                     return render_template("login.html", error_statement='Login invalido!')                
 
-                #cria a sessão do usuario
-                #session['user_id'] = user[0]
                 session['user_id'] = login.codigo
                 session['user_email'] = login.email
                 session['user_permission'] = login.permissao
-                #g.user = login
-
-                #return render_template("login_sucesso.html", user=user[1])
+                
                 return render_template("login_sucesso.html", user=login.email)
             
             except Exception as ex:
