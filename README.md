@@ -19,15 +19,19 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 ## TODO
 
-- [ ] Terminar CRUD cliente, proprientario, endereço
+- [ ] Terminar CRUD cliente, proprientario, endereço (Duda)
 
-- [ ] Adicionar try em todos os metodos que acessa o BD
+- [ ] Adicionar try em todos os metodos que acessa o BD (Gui)
 
-- [ ] Criar as views
+- [ ] Criar modelo relacional (Duda)
 
-- [ ] Adicionar o blob da img do apt no BD
+- [ ] Popular o banco de dados (Duda)
 
-- [ ] Implementar a procedure
+- [ ] Criar pagina de anuncios utilizando view (Gui comeca)
+
+- [ ] Criar botão de busca usando procedure de anuncios (Gui comeca)
+
+- [ ] Adicionar o blob da img do apt no BD (Gui comeca)
 
 ## Bugs
 
@@ -39,18 +43,16 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [x] Bug no sexo 🤪 (masculino ta sendo cadastrados como outros)
 
+- [ ] Bug CRUD dos botões
+
 - [ ] Bug no check do corretor, os horarios não somem quando muda o check pra cliente ou proprietario
 
 ## Extras
 
 - [ ] Adicionar confirmação ao remover do BD (tipo: "Vc tem certeza? Sim Nao")
 
-- [ ] Fazer uma página de anuncios
-
 - [ ] Exibir a img que ta no BD na pagina de anuncios
 
 ## Thoughts
 
-- Quando adiciona um usuario via CRUD tem que adicionar o endereço antes, pensar em um jeito de deixar dinamico para nao dar ruim com os códigos de PK e FK
-
-- A ana falou para trocar sexo por gênero
+- A ana falou para trocar sexo por gênero (podemos trocar só o nome no site dps)
