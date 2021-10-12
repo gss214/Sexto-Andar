@@ -65,11 +65,30 @@ INSERT INTO proprietario(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_lo
 INSERT INTO login(email, senha, permissao) VALUES ('duda@adm.com', '12345', 'adm');
 INSERT INTO login(email, senha, permissao) VALUES ('gui@adm.com', '12345', 'adm');
 
+#------------- Apartamentos --------------------#
+
+INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
+('77060304', 'Rua dos Colibris', 'Jardim Santa Bárbara', 'Palmas', 'tocantins', 177, 'apt 145');
+INSERT INTO categoria(descricao) VALUES ('Apartamento');
+INSERT INTO precos(aluguel, condominio, iptu, taxas, total) VALUES (1000, 400, 1500, 100, 3000);
+INSERT INTO caracteristicas(descricao, quantidade_de_quartos, quantidade_de_banheiros, quantidade_de_suites,
+area, vaga_garagem) VALUES ('Descrição' ,3, 2, 1, 65, 2);
+INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
+(10, '70600205860', 1, 1, 'Para alugar', 1);
+INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
+(1, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\apt.jpeg'), '2021-10-12', 'Foto do apt');
+
 select * from login;
 select * from permissao;
 select * from endereco;
 select * from corretor;
 select * from cliente;
 select * from proprietario;
+select * from imovel;
+select * from caracteristicas;
+select * from precos;
+select * from fotos;
+
+SELECT @@secure_file_priv;
 
 

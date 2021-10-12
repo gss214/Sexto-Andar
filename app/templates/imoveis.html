@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{%block title%} Sexto Andar! {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1><center>Imoveis disponiveis</center></h1>
+    <br>
+    <div class="card-group">
+      <div class="card">
+          <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+              <h5 class="card-title">Apt no DF</h5>
+              <p class="card-text">Descrição</p>
+              <a href="#" class="btn btn-primary">Alugar</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Apt em SC</h5>
+                <p class="card-text">Descrição.</p>
+                <a href="#" class="btn btn-primary">Alugar</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Apt em SP</h5>
+                <p class="card-text">Descrição.</p>
+                <a href="#" class="btn btn-primary">Alugar</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Apt na PB</h5>
+                <p class="card-text">Descrição.</p>
+                <a href="#" class="btn btn-primary">Alugar</a>
+            </div>
+        </div>
+    </div>
+    
+    <center>
+        
+        <br>
+        <h1>Buscar por Imoveis</h1>
+        <br>
+        
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+    </center>
+</div>  
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% endblock %}
