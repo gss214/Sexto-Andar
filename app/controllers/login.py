@@ -12,6 +12,7 @@ from app.decorators import auth
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
+
     # transformar para so um if
     if request.method == 'POST':
         # fazer a validacao dos dados para colocar no BD
@@ -48,7 +49,9 @@ def sign_up():
             
         return render_template('sign_up_sucesso.html')
 
-    return render_template('sign_up.html')
+    voltar = request.referrer.split('/')[3]
+    print(voltar)
+    return render_template('sign_up.html', voltar=voltar)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
