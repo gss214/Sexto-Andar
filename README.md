@@ -23,7 +23,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ] Adicionar try em todos os metodos que acessa o BD (Gui)
 
-- [ ] Criar modelo relacional (Duda)
+- [x] Criar modelo relacional (Duda)
 
 - [ ] Popular o banco de dados (Duda)
 
