@@ -160,7 +160,8 @@ create table contrato(
 	on delete cascade
     on update cascade,
     forma_de_pagamento varchar(20) not null,
-    duracao_meses int not null
+    duracao_meses int not null,
+    data_inicio date not null
 );
 
 CREATE VIEW anuncio AS
@@ -176,6 +177,7 @@ SELECT * from anuncio;
 drop view anuncio;
 
 # selecionar no anuncio se queremos casa ou apto
+# selecionar resumo (count) por tipo
 DELIMITER $$
 CREATE PROCEDURE `dadosProprietarioPorSexo` (Sexo varchar(30))
 BEGIN
