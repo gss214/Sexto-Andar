@@ -17,7 +17,7 @@ class ProprietarioDAO:
 
     def update(self, cursor, proprietario, cpf):
         data = {'cpf': cpf, 'nome': proprietario.nome, 'data_de_nascimento': proprietario.data_de_nascimento,
-                'sexo': proprietario.sexo, 'fk_endereco': proprietario.fk_endereco}
+                'sexo': proprietario.sexo, 'fk_endereco': proprietario.fk_endereco, 'fk_login': proprietario.fk_login}
         sql = "UPDATE proprietario SET nome = %(nome)s, data_de_nascimento = %(data_de_nascimento)s, \
                sexo = %(sexo)s, fk_endereco = %(fk_endereco)s, fk_login = %(fk_login)s WHERE cpf = %(cpf)s"
         cursor.execute(sql, data)

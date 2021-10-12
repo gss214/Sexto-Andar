@@ -92,25 +92,7 @@
 <script>
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-    var actions = $("table td:last-child").html();
-    // Append table with add row form on add new button click
-      $(".add-new").click(function(){
-      $(this).attr("disabled", "disabled");
-      var index = $("table tbody tr:last-child").index();
-          var row = '<tr>' +
-              '<td><input type="text" class="form-control" name="cpf" id="cpf"></td>' +
-              '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-              '<td><input type="date" class="form-control" name="date_of_birth" id="date_of_birth"></td>' +
-              '<td><input type="text" class="form-control" name="sexo" id="sexo"></td>' +
-              '<td><input type="text" class="form-control" name="adress" id="adress"></td>' +
-              '<td><input type="time" class="form-control" name="HorarioInicial" id="HorarioInicial"></td>' +
-              '<td><input type="time" class="form-control" name="Horarario Final" id="Horarario Final"></td>' +
-              '<td>' + actions + '</td>' +
-          '</tr>';
-        $("table").append(row);		
-      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-          $('[data-toggle="tooltip"]').tooltip();
-      });
+    var actions = $("table td:last-child").html();;
     // Add row on add button click
     $(document).on("click", ".add", function(){
       var empty = false;
@@ -125,12 +107,34 @@
       });
       $(this).parents("tr").find(".error").first().focus();
       if(!empty){
-        input.each(function(){
-          $(this).parent("td").html($(this).val());
-        });			
-        $(this).parents("tr").find(".add, .edit").toggle();
-        $(".add-new").removeAttr("disabled");
-      }		
+            var i = 0;
+            var json = {};
+			input.each(function(){
+				$(this).parent("td").html($(this).val());
+                //alert('ref: '+i+" value: "+$(this).val());
+                json['p'+i] = $(this).val();
+                i++;
+			});	
+            //alert (JSON.stringify(json));
+            
+            $.ajax({
+                url: '/crud_cliente',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(json),
+                dataType: 'json',
+                success: function(result) {
+                    // handle success
+                    $(this).parents("tr").find(".add, .edit").toggle();
+			        $(".add-new").removeAttr("disabled");
+                    alert('Usuario Atualizado com Sucesso');
+                },
+                error: function(request,msg,error) {
+                    // handle failure
+                    alert('ERROR');
+                }
+            });
+		}		
       });
     // Edit row on edit button click
     $(document).on("click", ".edit", function(){		
@@ -182,7 +186,7 @@
               <div class="row">
                   <div class="col-sm-8"><h2><b>Clientes</b></h2></div>
                   <div class="col-sm-4">
-                      <button type="button" class="btn btn-info add-new" ><i class="fa fa-plus"></i> Add New</button>
+                        <a role="button" class="btn btn-info add-new" href="{{url_for('sign_up')}}"><i class="fa fa-plus"></i> Add New</a>
                   </div>
               </div>
           </div>
@@ -193,8 +197,6 @@
                       <th>Nome</th>
                       <th>Data de Nascimento</th>
                       <th>Sexo</th>
-                      <th>Código Endereço</th>
-                      <th>Código Login</th>
                       <th>Ação</th>
                   </tr>
               </thead>
@@ -205,8 +207,6 @@
                       <td>{{c[1]}}</td>
                       <td>{{c[2]}}</td>
                       <td>{{c[3]}}</td>
-                      <td>{{c[4]}}</td>
-                      <td>{{c[5]}}</td>
                       <td>
                         <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                         <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>

@@ -38,7 +38,9 @@ class CorretorDAO:
         cursor.execute(sql)
         result = cursor.fetchone()
 
-        return result
+        cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login, horario_trabalho_inicio, horario_trabalho_final = result
+        corretor = Corretor(cpf, nome, data_de_nascimento, sexo, fk_endereco, fk_login, horario_trabalho_inicio, horario_trabalho_final)
+        return corretor
 
     def find_all(self, cursor):
         sql = "SELECT * FROM corretor"
