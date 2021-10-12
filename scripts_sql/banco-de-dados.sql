@@ -89,10 +89,6 @@ create table imovel(
     foreign key (fk_categoria) references categoria(codigo)
 	on delete cascade
     on update cascade,
-    fk_cliente varchar(11),
-    foreign key (fk_cliente) references cliente(cpf)
-	on delete cascade
-    on update cascade,
     fk_preco int not null,
     foreign key (fk_preco) references precos(codigo)
 	on delete cascade
@@ -109,11 +105,11 @@ create table corretor(
     nome varchar(50) not null,
     data_de_nascimento date not null,
     sexo varchar(10) not null,
-    fk_endereco int not null,
+    fk_endereco int,
     foreign key (fk_endereco) references endereco(codigo)
 	on delete cascade
     on update cascade,
-    fk_login int not null,
+    fk_login int,
     foreign key (fk_login) references login(codigo)
     on delete cascade
     on update cascade,
@@ -144,7 +140,7 @@ create table fotos(
     foreign key (fk_imovel) references imovel(codigo)
 	on delete cascade
     on update cascade,
-    foto blob not null,
+    foto longblob not null,
     data_foto date not null,
     descricao varchar(30)
 );
@@ -163,10 +159,6 @@ create table contrato(
     foreign key (fk_cliente) references cliente(cpf)
 	on delete cascade
     on update cascade,
-    fk_preco int not null,
-    foreign key (fk_preco) references precos(codigo)
-	on delete cascade
-    on update cascade,
     forma_de_pagamento varchar(20) not null,
     duracao_meses int not null
 );
@@ -183,6 +175,7 @@ SELECT * from anuncio;
 
 drop view anuncio;
 
+# selecionar no anuncio se queremos casa ou apto
 DELIMITER $$
 CREATE PROCEDURE `dadosProprietarioPorSexo` (Sexo varchar(30))
 BEGIN
