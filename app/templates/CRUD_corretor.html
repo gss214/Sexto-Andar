@@ -93,23 +93,7 @@
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();
-    // Append table with add row form on add new button click
-      $(".add-new").click(function(){
-      $(this).attr("disabled", "disabled");
-      var index = $("table tbody tr:last-child").index();
-          var row = '<tr>' +
-              '<td><input type="text" class="form-control" name="cpf" id="cpf"></td>' +
-              '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-              '<td><input type="text" class="form-control" name="date_of_birth" id="date_of_birth"></td>' +
-              '<td><input type="text" class="form-control" name="sexo" id="sexo"></td>' +
-              '<td><input type="text" class="form-control" name="HorarioInicial" id="HorarioInicial"></td>' +
-              '<td><input type="text" class="form-control" name="Horarario Final" id="Horarario Final"></td>' +
-              '<td>' + actions + '</td>' +
-          '</tr>';
-        $("table").append(row);		
-      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-          $('[data-toggle="tooltip"]').tooltip();
-      });
+
     // Add row on add button click
     $(document).on("click", ".add", function(){
       var empty = false;
@@ -134,6 +118,7 @@
 			});	
             alert (JSON.stringify(json));
             
+            $(this).parents("tr").find(".add, .edit").toggle();
             $.ajax({
                 url: '/crud_corretor',
                 method: 'POST',
@@ -142,9 +127,7 @@
                 dataType: 'json',
                 success: function(result) {
                     // handle success
-                    $(this).parents("tr").find(".add, .edit").toggle();
-			        $(".add-new").removeAttr("disabled");
-                    alert('Usuario Atualizado com Sucesso');
+			        alert('Usuario Atualizado com Sucesso');
                 },
                 error: function(request,msg,error) {
                     // handle failure
@@ -155,8 +138,31 @@
       });
     // Edit row on edit button click
     $(document).on("click", ".edit", function(){		
+        var i = 0;
           $(this).parents("tr").find("td:not(:last-child)").each(function(){
-        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+            console.log(i)
+            if (i == 2){
+                 $(this).html('<input type="date" class="form-control" value="' + $(this).text() + '">');
+             }
+             else if (i == 3){
+                 $(this).html(`
+                <input class="form-check-input" type="radio" value="Masculino" name="sexo" id="Masculino">
+                <label class="form-check-label" for="Masculino"> M </label>
+                
+                <input class="form-check-input" type="radio" value="Feminino" name="sexo" id="Feminino">
+                <label class="form-check-label" for="Feminino"> F </label>
+                
+                <input class="form-check-input" type="radio" value="Outros" name="sexo" id="Outros">
+                <label class="form-check-label" for="Outros"> O </label>
+                `);
+            }
+            else if (i > 3){
+                $(this).html('<input type="time" class="form-control" value="' + $(this).text() + '">');
+            }
+            else{
+                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+            }
+        i += 1;
       });		
       $(this).parents("tr").find(".add, .edit").toggle();
       $(".add-new").attr("disabled", "disabled");

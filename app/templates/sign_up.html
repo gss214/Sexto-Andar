@@ -182,7 +182,6 @@
             <label class="form-check-label" for="Proprietario"> Proprietário </label>
           </div>
           
-          
           <div id="autoupdate" class="autoupdate row">
             <div class="col">
               <label class="form-label">Horario Inicial</label>
@@ -208,10 +207,22 @@
           $(document).ready(function () {
             $('#autoupdate').hide();
             $('#Corretor').change(function () {
-                if (this.checked) 
+                if (document.getElementById('Corretor').checked = true)
                   $('#autoupdate').fadeIn('slow');
-                else 
-                    $('#autoupdate').fadeOut('slow');
+              });
+            });
+            
+            $(document).ready(function () {
+            $('#autoupdate').hide();
+            $('#Cliente').change(function () {
+              $('#autoupdate').fadeOut('slow');
+              });
+            });
+
+            $(document).ready(function () {
+            $('#autoupdate').hide();
+            $('#Proprietario').change(function () {
+              $('#autoupdate').fadeOut('slow');
               });
             });
         </script>

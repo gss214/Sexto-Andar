@@ -21,17 +21,19 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [x] Terminar CRUD cliente, proprientario, endereço (Duda)
 
-- [ ] Adicionar try em todos os metodos que acessa o BD (Gui)
+- [x] Adicionar try em todos os metodos que acessa o BD (Gui)
 
 - [x] Criar modelo relacional (Duda)
 
 - [ ] Popular o banco de dados (Duda)
 
-- [ ] Criar pagina de anuncios utilizando view (Gui comeca)
+- [x] Criar pagina de anuncios 
 
-- [ ] Criar botão de busca usando procedure de anuncios (Gui comeca)
+- [ ] Criar a view e a procedure 
 
-- [ ] Adicionar o blob da img do apt no BD (Gui comeca)
+- [x] Adicionar o blob da img do apt no BD 
+
+- [ ] Arrumar dados recebidos do CRUD (Duda)
 
 ## Bugs
 
@@ -43,9 +45,9 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [x] Bug no sexo 🤪 (masculino ta sendo cadastrados como outros)
 
-- [ ] Bug CRUD dos botões
+- [x] Bug CRUD dos botões
 
-- [ ] Bug no check do corretor, os horarios não somem quando muda o check pra cliente ou proprietario
+- [x] Bug no check do corretor, os horarios não somem quando muda o check pra cliente ou proprietario
 
 ## Extras
 
@@ -53,6 +55,10 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ] Exibir a img que ta no BD na pagina de anuncios
 
+- [ ] Quando criar usuario aparacer um popup de sucesso e voltar para a página anterior
+
 ## Thoughts
 
 - A ana falou para trocar sexo por gênero (podemos trocar só o nome no site dps)
+
+- View podia mostrar todos os dados do imoveis

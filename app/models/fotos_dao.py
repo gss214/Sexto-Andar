@@ -11,15 +11,24 @@ class FotosDAO:
         pass
 
     def find_by_imovel(self, cursor, fk_imovel):
-        sql = f"SELECT * FROM fotos WHERE fk_imovel = '{fk_imovel}'"
-        cursor.execute(sql)
-        result = cursor.fetchone()
-        codigo, fk_endereco, foto, data_foto, descricao = result
-        fotos = Fotos(codigo, fk_endereco, foto, data_foto, descricao)
-        return fotos
+        try:
+            sql = f"SELECT * FROM fotos WHERE fk_imovel = '{fk_imovel}'"
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            codigo, fk_endereco, foto, data_foto, descricao = result
+            fotos = Fotos(codigo, fk_endereco, foto, data_foto, descricao)
+            print(foto)
+            return fotos
+        except Exception as ex:
+            print(ex)
+            return None
 
     def find_all(self, cursor):
-        sql = "SELECT * FROM fotos"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        return result
+        try:
+            sql = "SELECT * FROM fotos"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            return result
+        except Exception as ex:
+            print(ex)
+            return None

@@ -117,6 +117,7 @@
 			});	
             //alert (JSON.stringify(json));
             
+            $(this).parents("tr").find(".add, .edit").toggle();
             $.ajax({
                 url: '/crud_proprietario',
                 method: 'POST',
@@ -125,9 +126,7 @@
                 dataType: 'json',
                 success: function(result) {
                     // handle success
-                    $(this).parents("tr").find(".add, .edit").toggle();
-			        $(".add-new").removeAttr("disabled");
-                    alert('Usuario Atualizado com Sucesso');
+			        alert('Usuario Atualizado com Sucesso');
                 },
                 error: function(request,msg,error) {
                     // handle failure

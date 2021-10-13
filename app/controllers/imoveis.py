@@ -19,5 +19,5 @@ def imoveis():
         for apt in apartamentos:
             fotos = FotosDAO().find_by_imovel(cursor, apt[0])
             apts.append([apt, fotos])
-
+            
         return render_template("imoveis.html", apts=apts)

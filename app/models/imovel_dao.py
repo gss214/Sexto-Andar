@@ -13,16 +13,24 @@ class ImovelDAO:
         pass
 
     def find_by_id(self, cursor, codigo):
-        sql = f"SELECT * FROM imovel WHERE codigo = '{codigo}'"
-        cursor.execute(sql)
-        result = cursor.fetchone()
+        try:
+            sql = f"SELECT * FROM imovel WHERE codigo = '{codigo}'"
+            cursor.execute(sql)
+            result = cursor.fetchone()
 
-        codigo, fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas = result
-        imovel = Imovel(codigo, fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas)
-        return imovel
+            codigo, fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas = result
+            imovel = Imovel(codigo, fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas)
+            return imovel
+        except Exception as ex:
+            print(ex)
+            return None
 
     def find_all(self, cursor):
-        sql = "SELECT * FROM imovel"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        return result
+        try:
+            sql = "SELECT * FROM imovel"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            return result
+        except Exception as ex:
+            print(ex)
+            return None
