@@ -8,38 +8,18 @@
     <h1><center>Imoveis disponiveis</center></h1>
     <br>
     <div class="card-group">
-      <div class="card">
-          <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Apt no DF</h5>
-              <p class="card-text">Descrição</p>
-              <a href="#" class="btn btn-primary">Alugar</a>
-            </div>
-        </div>
+        {% for apt in apts %}
+
         <div class="card">
-            <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
+            <img src= {{apt[2]}} class="card-img-top" alt="..." width="50%" height="50%">
             <div class="card-body">
-                <h5 class="card-title">Apt em SC</h5>
-                <p class="card-text">Descrição.</p>
+                <h5 class="card-title">Titulo</h5>
+                <p class="card-text">Descrição</p>
                 <a href="#" class="btn btn-primary">Alugar</a>
             </div>
         </div>
-        <div class="card">
-            <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Apt em SP</h5>
-                <p class="card-text">Descrição.</p>
-                <a href="#" class="btn btn-primary">Alugar</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="\static\imgs\apt.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Apt na PB</h5>
-                <p class="card-text">Descrição.</p>
-                <a href="#" class="btn btn-primary">Alugar</a>
-            </div>
-        </div>
+
+        {% endfor %}
     </div>
     
     <center>
