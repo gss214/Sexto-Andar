@@ -57,6 +57,8 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ] Quando criar usuario aparacer um popup de sucesso e voltar para a página anterior
 
+- [ ] Padronizar código
+
 ## Thoughts
 
 - A ana falou para trocar sexo por gênero (podemos trocar só o nome no site dps)
