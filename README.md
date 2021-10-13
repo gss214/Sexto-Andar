@@ -19,6 +19,8 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 ## TODO
 
+- site do diagrama mer [https://www.diagrams.net/](https://www.diagrams.net/)
+
 - [x] Terminar CRUD cliente, proprientario, endereço (Duda)
 
 - [x] Adicionar try em todos os metodos que acessa o BD (Gui)
