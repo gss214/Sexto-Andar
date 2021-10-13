@@ -62,3 +62,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 - A ana falou para trocar sexo por gênero (podemos trocar só o nome no site dps)
 
 - View podia mostrar todos os dados do imoveis
+
+## Duvidas
+
+- Relacionamento nos diagramas MER e MR
