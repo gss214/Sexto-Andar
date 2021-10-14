@@ -149,6 +149,25 @@ INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situaca
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
 (4, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\casa1.jpeg'), '2021-10-12', 'Foto da casa');
 
+INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
+('50770090', 'Rua da Diligência', 'Afogados', 'Recife', 'pernambuco', 171, 'apt 201');
+INSERT INTO precos(aluguel, condominio, iptu, taxas, total) VALUES (1000, 200, 120, 40, 1360);
+INSERT INTO caracteristicas(descricao, quantidade_de_quartos, quantidade_de_banheiros, quantidade_de_suites,
+area, vaga_garagem) VALUES ('Kitnet em Recife', 1, 1, 0, 35, 1);
+INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
+(20, '94140965401', 3, 5, 'Para alugar', 5);
+INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
+(5, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet1.jpeg'), '2021-10-12', 'Foto da kitnet');
+
+
+#------------- Visita --------------------#
+
+
+
+
+#------------- Contrato --------------------#
+
+
 
 select * from login;
 select * from permissao;
