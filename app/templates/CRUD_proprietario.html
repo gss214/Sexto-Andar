@@ -10,7 +10,7 @@
 
 <style>
   .table-wrapper {
-      width: 1000px;
+      width: 1200px;
       margin: 30px auto;
       background: #fff;
       padding: 20px;	
@@ -91,12 +91,14 @@
 
 <script>
   $(document).ready(function(){
+    cpf = '';
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();;
     // Add row on add button click
+
     $(document).on("click", ".add", function(){
       var empty = false;
-      var input = $(this).parents("tr").find('input[type="text"]');
+      var input = $(this).parents("tr").find('input');
           input.each(function(){
         if(!$(this).val()){
           $(this).addClass("error");
@@ -107,15 +109,39 @@
       });
       $(this).parents("tr").find(".error").first().focus();
       if(!empty){
-            var i = 0;
+        var i = 1;
             var json = {};
+            json['p0'] = cpf;
 			input.each(function(){
-				$(this).parent("td").html($(this).val());
                 //alert('ref: '+i+" value: "+$(this).val());
-                json['p'+i] = $(this).val();
-                i++;
-			});	
-            //alert (JSON.stringify(json));
+                if(i == 3){
+                    if($(this).prop("checked")){
+                        $(this).parent("td").html($(this).val());
+                        json['p'+i] = 'masculino';
+                    } 
+                    i++;
+                }
+                else if(i == 4){
+                    if($(this).prop("checked")){
+                        $(this).parent("td").html($(this).val());
+                        json['p'+3] = 'feminino';
+                    }
+                    i++; 
+                }
+                else if(i == 5){
+                    if($(this).prop("checked")){
+                        $(this).parent("td").html($(this).val());
+                        json['p'+3] = 'outros';
+                    }
+                    i++;
+                }
+                else{
+                    $(this).parent("td").html($(this).val());
+                    json['p'+i] = $(this).val();
+                    i++;
+                }
+			});
+            alert (JSON.stringify(json));
             
             $(this).parents("tr").find(".add, .edit").toggle();
             $.ajax({
@@ -137,12 +163,44 @@
       });
     // Edit row on edit button click
     $(document).on("click", ".edit", function(){		
-          $(this).parents("tr").find("td:not(:last-child)").each(function(){
-        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-      });		
+        var i = 0;
+            $(this).parents("tr").find("td:not(:last-child)").each(function(){
+                if (i == 0){
+                    cpf = $(this).text();
+                }
+                else if (i == 2){
+                    $(this).html('<input type="date" class="form-control" value="' + $(this).text() + '">');
+                }
+                else if (i == 3){
+                    checkM = ''; checkF = ''; checkO = '';
+                    if($(this).text() == 'masculino'){
+                        checkM = 'checked';
+                    }
+                    else if($(this).text() == 'feminino'){
+                        checkF = 'checked';
+                    }
+                    else if($(this).text() == 'outros'){
+                        checkO = 'checked';
+                    }
+                    $(this).html(`
+                    <input class="form-check-input" type="radio" value="masculino" name="sexo" id="Masculino" ` + checkM + `  >
+                    <label class="form-check-label" for="Masculino"> M </label>
+                    
+                    <input class="form-check-input" type="radio" value="feminino" name="sexo" id="Feminino" ` + checkF + `>
+                    <label class="form-check-label" for="Feminino"> F </label>
+                    
+                    <input class="form-check-input" type="radio" value="outros" name="sexo" id="Outros" ` + checkO + `>
+                    <label class="form-check-label" for="Outros"> O </label>
+                    `);
+                }
+                else{
+                    $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                }
+                i += 1;
+            });		
       $(this).parents("tr").find(".add, .edit").toggle();
       $(".add-new").attr("disabled", "disabled");
-      });
+    });
 
     
     // Delete row on delete button click
@@ -178,7 +236,7 @@
   });
 </script>
 
-<div class="container-lg">
+<div class="container-fluid">
   <div class="table-responsive">
       <div class="table-wrapper">
           <div class="table-title">
@@ -192,11 +250,11 @@
           <table class="table table-bordered">
               <thead>
                   <tr>
-                      <th>CPF</th>
-                      <th>Nome</th>
-                      <th>Data de Nascimento</th>
-                      <th>Sexo</th>
-                      <th>Ação</th>
+                        <th style="width: 150px">CPF</th>
+                        <th style="width: 250px">Nome</th>
+                        <th style="width: 200px">Data de Nascimento</th>
+                        <th style="width: 150px">Sexo</th>
+                        <th>Ação</th>
                   </tr>
               </thead>
               <tbody>

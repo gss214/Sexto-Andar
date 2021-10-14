@@ -30,7 +30,7 @@ def crud_corretor():
         print("entrou")
         data = request.get_json()
         print(data)
-        corretor = Corretor(data['p0'], data['p1'], data['p2'], data['p3'], None, None, data['p4'], data['p5'])
+        corretor = Corretor(data['p0'], data['p1'], data['p2'], data['p3'], None, None, data['p6'], data['p7'])
         
         c = CorretorDAO().find_by_id(cursor, corretor.cpf)
         corretor.fk_endereco = c.fk_endereco

@@ -10,7 +10,7 @@
 
 <style>
   .table-wrapper {
-      width: 1000px;
+      width: 85%;
       margin: 30px auto;
       background: #fff;
       padding: 20px;	
@@ -91,12 +91,13 @@
 
 <script>
   $(document).ready(function(){
+    id = ''
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();;
     // Add row on add button click
     $(document).on("click", ".add", function(){
       var empty = false;
-      var input = $(this).parents("tr").find('input[type="text"]');
+      var input = $(this).parents("tr").find('input');
           input.each(function(){
         if(!$(this).val()){
           $(this).addClass("error");
@@ -107,15 +108,15 @@
       });
       $(this).parents("tr").find(".error").first().focus();
       if(!empty){
-            var i = 0;
+            var i = 1;
             var json = {};
+            json['p0'] = id;
 			input.each(function(){
 				$(this).parent("td").html($(this).val());
-                //alert('ref: '+i+" value: "+$(this).val());
                 json['p'+i] = $(this).val();
                 i++;
 			});	
-            //alert (JSON.stringify(json));
+            alert (JSON.stringify(json));
             
             $(this).parents("tr").find(".add, .edit").toggle();
             $.ajax({
@@ -136,13 +137,20 @@
 		}		
       });
     // Edit row on edit button click
-    $(document).on("click", ".edit", function(){		
-          $(this).parents("tr").find("td:not(:last-child)").each(function(){
-        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-      });		
-      $(this).parents("tr").find(".add, .edit").toggle();
-      $(".add-new").attr("disabled", "disabled");
-      });
+    $(document).on("click", ".edit", function(){
+        var i = 0;		
+        $(this).parents("tr").find("td:not(:last-child)").each(function(){
+            if(i == 0){
+                id = $(this).text();
+            }
+            else{
+                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+            }
+            i+=1;
+        });		
+    $(this).parents("tr").find(".add, .edit").toggle();
+    $(".add-new").attr("disabled", "disabled");
+    });
 
     
     // Delete row on delete button click
@@ -178,7 +186,7 @@
   });
 </script>
 
-<div class="container-lg">
+<div class="container-fluid">
   <div class="table-responsive">
       <div class="table-wrapper">
           <div class="table-title">
@@ -192,15 +200,15 @@
           <table class="table table-bordered">
               <thead>
                   <tr>
-                      <th>Código</th>
-                      <th>CEP</th>
-                      <th>Rua</th>
-                      <th>Bairro</th>
-                      <th>Cidade</th>
-                      <th>Estado</th>
-                      <th>Numero</th>
-                      <th>Complem.</th>
-                      <th>Ação</th>
+                      <th style="width: 50px">Código</th>
+                      <th style="width: 70px">CEP</th>
+                      <th style="width: 180px">Rua</th>
+                      <th style="width: 150px">Bairro</th>
+                      <th style="width: 100px">Cidade</th>
+                      <th style="width: 130px">Estado</th>
+                      <th style="width: 60px">Numero</th>
+                      <th style="width: 90px">Complemento</th>
+                      <th style="width: 65px">Ação</th>
                   </tr>
               </thead>
               <tbody>

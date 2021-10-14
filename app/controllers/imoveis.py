@@ -25,7 +25,7 @@ def imoveis():
         for apt in apartamentos:
             print(apt)
             fotos = FotosDAO().find_by_imovel(cursor, apt[0])
-            print(fotos)
+            #print(fotos.codigo)
             foto_path = convertImage(fotos.foto, fotos.codigo)
             foto_path = foto_path[3:]
             apts.append([apt, fotos, foto_path])
