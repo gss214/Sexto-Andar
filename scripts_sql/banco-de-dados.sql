@@ -177,18 +177,17 @@ SELECT * from anuncio;
 drop view anuncio;
 
 # selecionar no anuncio se queremos casa ou apto
-# selecionar resumo (count) por tipo
+# ou selecionar resumo (count) por tipo
 DELIMITER $$
-CREATE PROCEDURE `dadosProprietarioPorSexo` (Sexo varchar(30))
+CREATE PROCEDURE `selectImoveisPorTipo` (Categoria varchar(100))
 BEGIN
-select cpf, nome, email, data_de_nascimento, sexo, CEP from proprietario, login, endereco
-where proprietario.sexo = Sexo
-and proprietario.fk_endereco = endereco.codigo
-and proprietario.fk_login = login.codigo;
+SELECT * FROM anuncio
+where tipo = Categoria;
 END $$
 DELIMITER ;
 
-call `dadosProprietarioPorSexo` ("feminino");
-call `dadosProprietarioPorSexo` ("masculino");
+call `selectImoveisPorTipo` ("Apartamento");
+call `selectImoveisPorTipo` ("Casa");
+call `selectImoveisPorTipo` ("Kitnet");
 
-drop procedure `dadosProprietarioPorSexo`;
+drop procedure `selectImoveisPorTipo`;
