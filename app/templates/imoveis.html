@@ -7,24 +7,20 @@
 <div class="container">
     <h1><center>Imoveis disponiveis</center></h1>
     <br>
-    <div class="card-group">
-        {% for apt in apts %}
-
-        <div class="card">
-            <img src= {{apt[2]}} class="card-img-top" alt="..." width="50%" height="50%">
-            <div class="card-body">
-                <h5 class="card-title">Titulo</h5>
-                <p class="card-text">Descrição</p>
-                <a href="#" class="btn btn-primary">Alugar</a>
-            </div>
-        </div>
-    
-
+    <div class="row slider">
+    {% for apt in apts %}
+          <div class="card">
+              <img src= {{apt[2]}} class="card-img-top" alt="..." width="500px" height="300px">
+              <div class="card-body">
+                  <h5 class="card-title">Titulo</h5>
+                  <p class="card-text">Descrição</p>
+                  <a href="#" class="btn btn-primary">Alugar</a>
+              </div>
+          </div>
         {% endfor %}
     </div>
     
     <center>
-        
         <br>
         <h1>Buscar por Imoveis</h1>
         <br>
@@ -41,6 +37,44 @@
           
     </center>
 </div>  
+
+<script>
+$('.slider').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+</script>
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
