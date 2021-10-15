@@ -8,18 +8,24 @@
     <h1><center>Imoveis disponiveis</center></h1>
     <br>
     <div class="row slider">
-    {% for apt in apts %}
+    {% for imovel in imoveis %}
           <div class="card">
-              <img src= {{apt[2]}} class="card-img-top" alt="..." width="500px" height="260px">
+              <img src= {{imovel[2]}} class="card-img-top" alt="..." width="500px" height="260px">
               <div class="card-body">
-                  <h5 class="card-title">Titulo</h5>
-                  <p class="card-text">Descrição</p>
-                  <a href="#" class="btn btn-primary">Alugar</a>
+                  <h5 class="card-title">{{imovel[3].descricao}}</h5>
+                  <a href="#" class="btn btn-primary">Saiba mais</a>
+                </div>
               </div>
-          </div>
-        {% endfor %}
-    </div>
-    
+              {% endfor %}
+            </div>
+            
+    {% if back %}
+      <br>
+      <center>
+        <a href="{{ url_for('imoveis') }}" class="btn btn-primary">Voltar</a>
+      </center>
+    {% endif %}
+
     <center>
         <br>
         <h1>Buscar por Imoveis</h1>
@@ -34,7 +40,6 @@
             </select>
             <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>       
-          
     </center>
 </div>  
 

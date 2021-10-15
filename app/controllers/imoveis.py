@@ -3,6 +3,7 @@ from flask import request, render_template, session
 from werkzeug.utils import redirect
 from app.models.imovel_dao import ImovelDAO
 from app.models.fotos_dao import FotosDAO
+from app.models.caracteristicas_dao import Caracteristicas, CaracteristicasDAO
 from app.decorators import auth
 
 def convertImage(image_blob, id):
@@ -15,41 +16,30 @@ def convertImage(image_blob, id):
 @app.route("/imoveis",  methods = ["GET", "POST"])
 def imoveis():
 
-    if request.method == 'GET':
-        cursor = cnx.connection.cursor()
-
-        apartamentos = ImovelDAO().find_all(cursor)
-        apts = []
+    imoveis = []
+    cursor = cnx.connection.cursor()
     
-        #falta pegar a descricao e as caracteristicas
-        for apt in apartamentos:
-            print(apt)
-            fotos = FotosDAO().find_by_imovel(cursor, apt[0])
-            #print(fotos.codigo)
-            foto_path = convertImage(fotos.foto, fotos.codigo)
-            foto_path = foto_path[3:]
-            apts.append([apt, fotos, foto_path])
-            #print(foto_path)
-            
-        return render_template("imoveis.html", apts=apts)
-
+    if request.method == 'GET':
+        result = ImovelDAO().find_all(cursor)
+        back = False
+    
     else:
-        cursor = cnx.connection.cursor()
         tipo_imovel = request.form.getlist('tipoImovel')[0]
         cursor.callproc('selectImoveisPorTipo', [tipo_imovel])
         result = cursor.fetchall()
-        apts = []
+        back = True
 
-        # criar botao todos que recarrega a pagina xD
-        for apt in result:
-            print(apt)
-            fotos = FotosDAO().find_by_imovel(cursor, apt[0])
-            #print(fotos.codigo)
-            foto_path = convertImage(fotos.foto, fotos.codigo)
-            foto_path = foto_path[3:]
-            apts.append([apt, fotos, foto_path])
-            #print(foto_path)
+    for imovel in result:
+        #print(imovel)
+        fotos = FotosDAO().find_by_imovel(cursor, imovel[0])
+        caracteristicas = CaracteristicasDAO().find_by_id(cursor, imovel[0])
+        #print(fotos.codigo)
+        foto_path = convertImage(fotos.foto, fotos.codigo)
+        foto_path = foto_path[3:]
+        #print(caracteristicas)
+        imoveis.append([imovel, fotos, foto_path, caracteristicas])
+        #print(foto_path)
 
-        #print(result)
-            
-        return render_template("imoveis.html", apts=apts)
+    #print(result)
+        
+    return render_template("imoveis.html", imoveis=imoveis, back=back)
