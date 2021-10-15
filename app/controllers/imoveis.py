@@ -29,6 +29,27 @@ def imoveis():
             foto_path = convertImage(fotos.foto, fotos.codigo)
             foto_path = foto_path[3:]
             apts.append([apt, fotos, foto_path])
-            print(foto_path)
+            #print(foto_path)
+            
+        return render_template("imoveis.html", apts=apts)
+
+    else:
+        cursor = cnx.connection.cursor()
+        tipo_imovel = request.form.getlist('tipoImovel')[0]
+        cursor.callproc('selectImoveisPorTipo', [tipo_imovel])
+        result = cursor.fetchall()
+        apts = []
+
+        # criar botao todos que recarrega a pagina xD
+        for apt in result:
+            print(apt)
+            fotos = FotosDAO().find_by_imovel(cursor, apt[0])
+            #print(fotos.codigo)
+            foto_path = convertImage(fotos.foto, fotos.codigo)
+            foto_path = foto_path[3:]
+            apts.append([apt, fotos, foto_path])
+            #print(foto_path)
+
+        #print(result)
             
         return render_template("imoveis.html", apts=apts)

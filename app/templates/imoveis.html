@@ -10,7 +10,7 @@
     <div class="row slider">
     {% for apt in apts %}
           <div class="card">
-              <img src= {{apt[2]}} class="card-img-top" alt="..." width="500px" height="300px">
+              <img src= {{apt[2]}} class="card-img-top" alt="..." width="500px" height="260px">
               <div class="card-body">
                   <h5 class="card-title">Titulo</h5>
                   <p class="card-text">Descrição</p>
@@ -25,14 +25,14 @@
         <h1>Buscar por Imoveis</h1>
         <br>
         
-        <form class="d-flex">
+        <form action="/imoveis" method="POST" class="d-flex">
             <select class="form-select" aria-label="Search" name="tipoImovel">
-              <option selected>Search</option>
+              <option disabled selected hidden>Imoveis</option>
               <option value="Apartamento">Apartamento</option>
               <option value="Casa">Casa</option>
               <option value="Kitnet">Kitnet</option>
             </select>
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>       
           
     </center>
