@@ -92,7 +92,7 @@
 <script>
   $(document).ready(function(){
     id = ''
-    $('[data-toggle="tooltip"]').tooltip();
+    //$('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();;
     // Add row on add button click
     $(document).on("click", ".add", function(){
@@ -116,7 +116,7 @@
                 json['p'+i] = $(this).val();
                 i++;
 			});	
-            alert (JSON.stringify(json));
+            //alert (JSON.stringify(json));
             
             $(this).parents("tr").find(".add, .edit").toggle();
             $.ajax({
