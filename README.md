@@ -41,7 +41,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 ## Bugs
 
-- [ ] Bug do delete que fica pra sempre quando deleta algo do BD
+- [x] Bug do delete que fica pra sempre quando deleta algo do BD
 
 - [x] Bug no login, quando loga errado o retorno da msg eh o proprio erro
 
@@ -57,7 +57,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ] Adicionar confirmação ao remover do BD (tipo: "Vc tem certeza? Sim Nao")
 
-- [ ] Exibir a img que ta no BD na pagina de anuncios
+- [x] Exibir a img que ta no BD na pagina de anuncios
 
 - [ ] Quando criar usuario aparacer um popup de sucesso e voltar para a página anterior
 
