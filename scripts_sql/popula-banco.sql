@@ -128,6 +128,8 @@ INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situaca
 (17, '70600205860', 1, 2, 'Para alugar', 2);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
 (2, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\apt2.jpeg'), '2021-10-12', 'Foto do apt');
+INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
+(2, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\cozinhaapt2.jpg'), '2021-10-12', 'Foto da cozinha');
 
 INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
 ('04928160', 'Rua Ezequiel Alves Ramos', 'Copacabana', 'São Paulo', 'sao paulo', 871, 'apt 708');
@@ -159,6 +161,19 @@ INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situaca
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
 (5, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet1.jpeg'), '2021-10-12', 'Foto da kitnet');
 
+INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
+('02883154', 'Rua Erasmo Souza', 'Vila Nova Parada', 'São Paulo', 'sao paulo', 169, 'apt 508');
+INSERT INTO precos(aluguel, condominio, iptu, taxas, total) VALUES (2500, 400, 220, 80, 3200);
+INSERT INTO caracteristicas(descricao, quantidade_de_quartos, quantidade_de_banheiros, quantidade_de_suites,
+area, vaga_garagem) VALUES ('Kitnet em São Paulo', 1, 1, 0, 40, 1);
+INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
+(21, '91396633880', 3, 6, 'Para alugar', 6);
+INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
+(6, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet2.jpg'), '2021-10-12', 'Foto da kitnet');
+INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
+(6, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet2.2.jpg'), '2021-10-12', 'Foto da kitnet');
+INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
+(6, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\banheirokitnet2.jpg'), '2021-10-12', 'Foto do banheiro');
 
 #------------- Visita --------------------#
 

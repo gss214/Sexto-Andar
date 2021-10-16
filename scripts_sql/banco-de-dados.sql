@@ -165,26 +165,17 @@ create table contrato(
 );
 
 CREATE VIEW anuncio AS
-SELECT categoria.descricao as tipo, caracteristicas.descricao as descricao, quantidade_de_quartos, 
+SELECT imovel.codigo as codigo, categoria.descricao as tipo, caracteristicas.descricao as descricao, quantidade_de_quartos, 
 quantidade_de_banheiros, quantidade_de_suites, area, vaga_garagem, aluguel, condominio, iptu, taxas, total as preco_total
 FROM categoria, caracteristicas, precos, imovel
 WHERE imovel.fk_caracteristicas = caracteristicas.codigo
 AND imovel.fk_categoria = categoria.codigo
 AND imovel.fk_preco = precos.codigo;
 
-SELECT * from anuncio;
+SELECT * from anuncio
+WHERE codigo = 5;
 
 drop view anuncio;
-
-# selecionar no anuncio se queremos casa ou apto
-# ou selecionar resumo (count) por tipo
-DELIMITER $$
-CREATE PROCEDURE `selectAnuncioPorTipo` (Categoria varchar(100))
-BEGIN
-SELECT * FROM anuncio
-where tipo = Categoria;
-END $$
-DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `selectImoveisPorTipo` (Categoria varchar(100))
