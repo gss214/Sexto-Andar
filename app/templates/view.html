@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{%block title%} Sexto Andar! {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1 style="text-align:center">{{anuncio[2]}}</h1>
+    <br>
+  
+    <div class="row slider">
+    {% for foto in fotos %}
+        <div class="card">
+            <img src= {{foto[1]}} class="card-img-top" alt="..." width="100%" height="260px">
+            <div class="card-body">
+                <h5 class="card-title">{{foto[0][4]}}</h5>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div class="container p-4 my-4 border">
+    
+    <div class="row">
+
+        <div class="col">
+            <h3 style="text-align:center"> Características</h3>
+            <br>
+        </div>
+
+        <div class="col">
+            <h3 style="text-align:center"> Preços</h3>
+            <br>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <p style="text-align:center">Quantidade de quartos: {{anuncio[3]}}</p>
+        </div>
+
+        <div class="col">
+            <p style="text-align:center">Aluguel: {{anuncio[8]}}</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <p style="text-align:center">Quantidade de banheiros: {{anuncio[4]}}</p>
+        </div>
+
+        <div class="col">
+            <p style="text-align:center">Condomínio: {{anuncio[9]}}</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <p style="text-align:center">Quantidade de suítes: {{anuncio[5]}}</p>
+        </div>
+
+        <div class="col">
+            <p style="text-align:center">IPTU: {{anuncio[10]}}</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <p style="text-align:center">Área: {{anuncio[6]}}</p>
+        </div>
+
+        <div class="col">
+            <p style="text-align:center">Taxas: {{anuncio[11]}}</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <p style="text-align:center">Vagas na Garagem: {{anuncio[7]}}</p>
+        </div>
+
+        <div class="col">
+            <p style="text-align:center">Total: {{anuncio[12]}}</p>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div style="text-align:center">
+        <button type="button" class="btn btn-primary" disabled>Agendar Visita</button>
+        <button type="button" class="btn btn-primary" disabled>Fazer Proposta</button>
+    </div>
+
+</div>
+
+
+
+<style>
+.container {
+  width: 850px
+}
+</style>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+$('.slider').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+</script>
+
+{% endblock %}

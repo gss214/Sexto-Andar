@@ -13,7 +13,8 @@
               <img src= {{imovel[2]}} class="card-img-top" alt="..." width="500px" height="260px">
               <div class="card-body">
                   <h5 class="card-title">{{imovel[3].descricao}}</h5>
-                  <a href="#" class="btn btn-primary">Saiba mais</a>
+                  {% set cod = imovel[3].codigo %}
+                  <a href="{{ url_for('view', imovel=cod) }}" class="btn btn-primary">Saiba mais</a>
                 </div>
               </div>
               {% endfor %}

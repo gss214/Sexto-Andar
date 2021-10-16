@@ -14,10 +14,8 @@ class FotosDAO:
         try:
             sql = f"SELECT * FROM fotos WHERE fk_imovel = '{fk_imovel}'"
             cursor.execute(sql)
-            result = cursor.fetchone()
-            codigo, fk_imovel, foto, data_foto, descricao = result
-            fotos = Fotos(codigo, fk_imovel, foto, data_foto, descricao)
-            return fotos
+            result = cursor.fetchall()
+            return result
         except Exception as ex:
             print(ex)
             return None
