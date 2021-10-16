@@ -74,3 +74,4 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 - Relacionamento nos diagramas MER e MR
 - Nao esta excluindo os dados em cascata
 - Diagrama da camada de mapeamento
+- CRUD add os fks
