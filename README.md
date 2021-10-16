@@ -27,15 +27,17 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [x] Criar modelo relacional (Duda)
 
-- [ ] Popular o banco de dados (Duda)
+- [x] Popular o banco de dados (Duda)
 
 - [x] Criar pagina de anuncios 
 
-- [ ] Criar a view e a procedure 
+- [x] Criar a view e a procedure 
 
 - [x] Adicionar o blob da img do apt no BD 
 
-- [ ] Arrumar dados recebidos do CRUD (Duda)
+- [x] Arrumar dados recebidos do CRUD (Duda)
+
+- [ ] Popular contrato (dados antigos) e visita
 
 ## Bugs
 
@@ -70,3 +72,5 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 ## Duvidas
 
 - Relacionamento nos diagramas MER e MR
+- Nao esta excluindo os dados em cascata
+- Diagrama da camada de mapeamento
