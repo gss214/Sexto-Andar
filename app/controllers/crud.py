@@ -131,8 +131,31 @@ def crud_endereco():
     return render_template("crud_endereco.html", enderecos = enderecos)
 
 
-def editar_endereco():
-    pass
+@app.route("/adicionar_endereco", methods = ['GET', 'DELETE', 'PUT', 'POST'])
+@auth.has_permission(['adm'])
+def adicionar_endereco():
+    voltar = request.referrer.split('/')[3]
+    if request.method == 'POST':
+        cursor = cnx.connection.cursor()      
+        endereco = from_form_to_endereco(request)   
+        EnderecoDAO().create(cursor, endereco)
+        cnx.connection.commit()
+        enderecos = EnderecoDAO().find_all(cursor)
+
+        return render_template('crud_endereco.html', enderecos = enderecos, add_sucess=True)
+    return render_template('adicionar_endereco.html', voltar=voltar)
+
+def from_form_to_endereco(request):
+    codigo = None
+    CEP = request.form.get("InputZipcode")
+    rua = request.form.get("InputStreet")
+    bairro = request.form.get("InputRegion")
+    cidade = request.form.get("InputCity")
+    estado = request.form.getlist('estado')[0]
+    numero = request.form.get("InputNumber")
+    complemento = request.form.get("InputAddressComplement")
+
+    return Endereco(codigo, CEP, rua, bairro, cidade, estado, numero, complemento)
 
 @app.route('/perfil', methods=['GET', 'POST'])
 def perfil():

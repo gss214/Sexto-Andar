@@ -5,7 +5,14 @@
 {% block content %}
 
 <div class="container">
-  <h1><center> CRUD</h1></center><br/><br/>
+  <h1 style="text-align:center">CRUD</h1>
+
+  {% if add_sucess %}
+    <div class="alert alert-success" role="alert">
+        Endereço adicionado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}  
 </div>
 
 <style>
@@ -191,9 +198,9 @@
       <div class="table-wrapper">
           <div class="table-title">
               <div class="row">
-                  <div class="col-sm-8"><h2><b>Enderecos</b></h2></div>
+                  <div class="col-sm-8"><h2><b>Endereços</b></h2></div>
                   <div class="col-sm-4">
-                        <a role="button" class="btn btn-info add-new" href="{{url_for('sign_up')}}"><i class="fa fa-plus"></i> Add New</a>
+                        <a role="button" class="btn btn-info add-new" href="{{url_for('adicionar_endereco')}}"><i class="fa fa-plus"></i> Add New</a>
                   </div>
               </div>
           </div>
@@ -234,6 +241,5 @@
       </div>
   </div>
 </div>
-
 
 {% endblock %}

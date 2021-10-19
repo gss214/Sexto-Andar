@@ -1,7 +1,7 @@
+drop database sextoandar;
+
 create database sextoandar;
 use sextoandar;
-
-drop database sextoandar;
 
 create table endereco (
 	codigo int primary key not null auto_increment,
@@ -175,7 +175,7 @@ AND imovel.fk_preco = precos.codigo;
 SELECT * from anuncio
 WHERE codigo = 5;
 
-drop view anuncio;
+#drop view anuncio;
 
 # selecionar no anuncio se queremos casa ou apto
 # ou selecionar resumo (count) por tipo

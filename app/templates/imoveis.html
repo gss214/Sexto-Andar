@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container">
-    <h1><center>Imoveis disponiveis</center></h1>
+    <h1 style="text-align:center">Imoveis disponiveis</h1>
     <br>
     <div class="row slider">
     {% for imovel in imoveis %}
@@ -22,26 +22,25 @@
             
     {% if back %}
       <br>
-      <center>
-        <a href="{{ url_for('imoveis') }}" class="btn btn-primary">Voltar</a>
-      </center>
+        <div class="col text-center">
+          <a href="{{ url_for('imoveis') }}" class="btn btn-primary">Voltar</a>
+        </div>
     {% endif %}
 
-    <center>
+    <div class="col text-center">
         <br>
         <h1>Buscar por Imoveis</h1>
         <br>
         
         <form action="/imoveis" method="POST" class="d-flex">
             <select class="form-select" aria-label="Search" name="tipoImovel">
-              <option disabled selected hidden>Imoveis</option>
               <option value="Apartamento">Apartamento</option>
               <option value="Casa">Casa</option>
               <option value="Kitnet">Kitnet</option>
             </select>
             <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>       
-    </center>
+    </div>
 </div>  
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
