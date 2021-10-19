@@ -39,6 +39,8 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ] Popular contrato (dados antigos) e visita
 
+- [ ] Arrumar o delete
+
 ## Bugs
 
 - [x] Bug do delete que fica pra sempre quando deleta algo do BD
