@@ -17,7 +17,23 @@ Digite o comando `pip install -r requirements.txt`, isso deverá instalar todas 
 Em seu terminal, entre no diretório `app`.
 Digite o comando `python app.py` e acesse em seu navegador o endereço `http://127.0.0.1:5000/` que será disponibilizado no próprio terminal ao executar o comando.
 
-## TODO
+## TODO Relatório
+
+- [ ]  Introdução
+
+- [ ]  Diagrama de Entidade Relacionamento
+-
+- [ ]  Modelo Relacional
+
+- [ ]  Cinco consultas em Álgebra relacional, onde cada consulta envolva pelo menos 3 tabelas.
+
+- [ ]  Avaliação das formas normais em cinco tabelas
+
+- [ ]  O diagrama da camada de mapeamento para uma tabela do banco de dados
+
+- [ ]  Conclusão
+
+## TODO Código
 
 - site do diagrama mer [https://www.diagrams.net/](https://www.diagrams.net/)
 
