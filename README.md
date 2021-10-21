@@ -22,7 +22,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 - [ ]  Introdução
 
 - [ ]  Diagrama de Entidade Relacionamento
--
+
 - [ ]  Modelo Relacional
 
 - [ ]  Cinco consultas em Álgebra relacional, onde cada consulta envolva pelo menos 3 tabelas.
