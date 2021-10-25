@@ -19,7 +19,7 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 ## TODO Relatório
 
-- [ ]  Introdução
+- [ ]  Introdução (introduzir um pouco sobre banco de dados e contextualizar sobre o trabalho)
 
 - [X]  Diagrama de Entidade Relacionamento (add legenda)
 
