@@ -21,17 +21,15 @@ Digite o comando `python app.py` e acesse em seu navegador o endereço `http://1
 
 - [ ]  Introdução
 
-- [ ]  Diagrama de Entidade Relacionamento
+- [X]  Diagrama de Entidade Relacionamento (add legenda)
 
-- [ ]  Modelo Relacional
+- [X]  Modelo Relacional
 
 - [ ]  Cinco consultas em Álgebra relacional, onde cada consulta envolva pelo menos 3 tabelas.
 
 - [ ]  Avaliação das formas normais em cinco tabelas
 
 - [ ]  O diagrama da camada de mapeamento para uma tabela do banco de dados
-
-- [ ]  Conclusão
 
 ## TODO Código
 
