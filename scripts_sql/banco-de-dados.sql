@@ -1,5 +1,3 @@
-drop database sextoandar;
-
 create database sextoandar;
 use sextoandar;
 
@@ -175,18 +173,6 @@ AND imovel.fk_preco = precos.codigo;
 SELECT * from anuncio
 WHERE codigo = 5;
 
-#drop view anuncio;
-
-# selecionar no anuncio se queremos casa ou apto
-# ou selecionar resumo (count) por tipo
-DELIMITER $$
-CREATE PROCEDURE `selectAnuncioPorTipo` (Categoria varchar(100))
-BEGIN
-SELECT * FROM anuncio
-where tipo = Categoria;
-END $$
-DELIMITER ;
-
 DELIMITER $$
 CREATE PROCEDURE `selectImoveisPorTipo` (Categoria varchar(100))
 BEGIN
@@ -199,7 +185,3 @@ DELIMITER ;
 call `selectAnuncioPorTipo` ("Apartamento");
 call `selectAnuncioPorTipo` ("Casa");
 call `selectAnuncioPorTipo` ("Kitnet");
-
-call `selectImoveisPorTipo` ("Apartamento");
-
-drop procedure `selectImoveisPorTipo`;
