@@ -6,6 +6,10 @@ Projeto final da disciplina de Banco de Dados da UnB em 2021.1
 Em seu terminal, entre no diretório desejado.
 Digite o comando `python -m venv env`, isso criará a pasta `env`. Após isso, entre no ambiente virtual executando o arquivo `Activate.ps1` que está na pasta `Scripts`, você pode fazer isso digitando o comando `.\env\Scripts\Activate.ps1` se você estiver utilizando o terminal `Powershell`.
 
+No Microsoft Windows, pode ser necessário ativar o script Activate.ps1, definindo a política de execução para o usuário. Você pode fazer isso executando o seguinte comando do PowerShell:
+
+´Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser´
+
 ## Instalando bibliotecas utilizadas
 
 Em seu terminal, entre no diretório desejado.
