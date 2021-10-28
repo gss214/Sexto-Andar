@@ -192,7 +192,6 @@ INSERT INTO contrato(fk_imovel, fk_corretor, fk_cliente, forma_de_pagamento, dur
 INSERT INTO contrato(fk_imovel, fk_corretor, fk_cliente, forma_de_pagamento, duracao_meses, data_inicio) VALUES(5, '23842822472', '59854366405', 'credito', 18, '2019-01-12');
 
 select * from login;
-select * from permissao;
 select * from endereco;
 select * from corretor;
 select * from cliente;

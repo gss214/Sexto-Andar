@@ -182,6 +182,6 @@ AND categoria.descricao = categoria;
 END $$
 DELIMITER ;
 
-call `selectAnuncioPorTipo` ("Apartamento");
-call `selectAnuncioPorTipo` ("Casa");
-call `selectAnuncioPorTipo` ("Kitnet");
+#call `selectAnuncioPorTipo` ("Apartamento");
+#call `selectAnuncioPorTipo` ("Casa");
+#call `selectAnuncioPorTipo` ("Kitnet");
