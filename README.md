@@ -1,4 +1,5 @@
-# Sexto Andar
+<img src="https://github.com/gss214/Sexto-Andar/blob/main/app/static/imgs/logo.png" width="300" height="50">
+
 Projeto final da disciplina de Banco de Dados da UnB em 2021.1
 
 ## Criando e acessando o ambiente virtual
