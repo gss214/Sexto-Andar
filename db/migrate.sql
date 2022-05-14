@@ -117,7 +117,7 @@ area, vaga_garagem) VALUES ('Apartamento em Palmas, com 3 quartos' ,3, 2, 1, 65,
 INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
 (16, '70600205860', 1, 1, 'Para alugar', 1);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(1, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\apt1.jpeg'), '2021-10-12', 'Foto do apt');
+(1, load_file('/var/lib/mysql/apt1.jpeg'), '2021-10-12', 'Foto do apt');
 
 INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
 ('74365320', 'Rua B 4', 'Setor Novo Horizonte', 'Goiânia', 'Goias', 798, 'apt 146');
@@ -127,9 +127,9 @@ area, vaga_garagem) VALUES ('Apartamento em Goiânia, com 4 quartos', 4, 3, 2, 6
 INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
 (17, '70600205860', 1, 2, 'Para alugar', 2);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(2, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\apt2.jpeg'), '2021-10-12', 'Foto do apt');
+(2, load_file('/var/lib/mysql/apt2.jpeg'), '2021-10-12', 'Foto do apt');
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(2, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\cozinhaapt2.jpg'), '2021-10-12', 'Foto da cozinha');
+(2, load_file('/var/lib/mysql/cozinhaapt2.jpg'), '2021-10-12', 'Foto da cozinha');
 
 INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
 ('04928160', 'Rua Ezequiel Alves Ramos', 'Copacabana', 'São Paulo', 'sao paulo', 871, 'apt 708');
@@ -139,7 +139,7 @@ area, vaga_garagem) VALUES ('Apartamento em São Paulo, com 2 quartos', 2, 2, 2,
 INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
 (18, '91396633880', 1, 3, 'Para alugar', 3);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(3, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\apt3.jpeg'), '2021-10-12', 'Foto do apt');
+(3, load_file('/var/lib/mysql/apt3.jpeg'), '2021-10-12', 'Foto do apt');
 
 INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
 ('33147080', 'Rua Dez', 'Castanheira', 'Santa Luzia', 'minas gerais', 903, 'Casa 23');
@@ -149,7 +149,7 @@ area, vaga_garagem) VALUES ('Casa em Santa Luzia, com 3 quartos', 3, 2, 1, 100, 
 INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
 (19, '70324744897', 2, 4, 'Para alugar', 4);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(4, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\casa1.jpeg'), '2021-10-12', 'Foto da casa');
+(4, load_file('/var/lib/mysql/casa1.jpeg'), '2021-10-12', 'Foto da casa');
 
 INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
 ('50770090', 'Rua da Diligência', 'Afogados', 'Recife', 'pernambuco', 171, 'apt 201');
@@ -159,7 +159,7 @@ area, vaga_garagem) VALUES ('Kitnet em Recife', 1, 1, 0, 35, 1);
 INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
 (20, '94140965401', 3, 5, 'Para alugar', 5);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(5, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet1.jpeg'), '2021-10-12', 'Foto da kitnet');
+(5, load_file('/var/lib/mysql/kitnet1.jpeg'), '2021-10-12', 'Foto da kitnet');
 
 INSERT INTO endereco(CEP, rua, bairro, cidade, estado, numero, complemento) VALUES 
 ('02883154', 'Rua Erasmo Souza', 'Vila Nova Parada', 'São Paulo', 'sao paulo', 169, 'apt 508');
@@ -169,11 +169,11 @@ area, vaga_garagem) VALUES ('Kitnet em São Paulo', 1, 1, 0, 40, 1);
 INSERT INTO imovel(fk_endereco, fk_proprietario, fk_categoria, fk_preco, situacao, fk_caracteristicas) VALUES
 (21, '91396633880', 3, 6, 'Para alugar', 6);
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(6, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet2.jpg'), '2021-10-12', 'Foto da kitnet');
+(6, load_file('/var/lib/mysql/kitnet2.jpg'), '2021-10-12', 'Foto da kitnet');
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(6, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\kitnet2.2.jpg'), '2021-10-12', 'Foto da kitnet');
+(6, load_file('/var/lib/mysql/kitnet2.2.jpg'), '2021-10-12', 'Foto da kitnet');
 INSERT INTO fotos(fk_imovel, foto, data_foto, descricao) VALUES
-(6, load_file('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\banheirokitnet2.jpg'), '2021-10-12', 'Foto do banheiro');
+(6, load_file('/var/lib/mysql/banheirokitnet2.jpg'), '2021-10-12', 'Foto do banheiro');
 
 #------------- Visita --------------------#
 
@@ -190,19 +190,3 @@ INSERT INTO contrato(fk_imovel, fk_corretor, fk_cliente, forma_de_pagamento, dur
 INSERT INTO contrato(fk_imovel, fk_corretor, fk_cliente, forma_de_pagamento, duracao_meses, data_inicio) VALUES(3, '84223746928', '87919993164', 'credito', 12, '2019-10-19');
 INSERT INTO contrato(fk_imovel, fk_corretor, fk_cliente, forma_de_pagamento, duracao_meses, data_inicio) VALUES(3, '84223746928', '03764923091', 'a vista', 9, '2015-03-10');
 INSERT INTO contrato(fk_imovel, fk_corretor, fk_cliente, forma_de_pagamento, duracao_meses, data_inicio) VALUES(5, '23842822472', '59854366405', 'credito', 18, '2019-01-12');
-
-select * from login;
-select * from endereco;
-select * from corretor;
-select * from cliente;
-select * from proprietario;
-select * from imovel;
-select * from caracteristicas;
-select * from precos;
-select * from fotos;
-select * from visita;
-select * from contrato;
-
-SELECT @@secure_file_priv;
-
-
