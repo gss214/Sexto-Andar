@@ -1,4 +1,3 @@
-import base64
 from app import app, cnx
 from flask import request, render_template
 from app.models.imovel_dao import ImovelDAO
@@ -6,9 +5,10 @@ from app.models.fotos_dao import FotosDAO, Fotos
 from app.models.caracteristicas_dao import CaracteristicasDAO
 
 def convertImage(image_blob, id):
-    path = f'/app/static/imgs/img{id}.jpeg/'
+    path = f'/app/app/static/imgs/img{id}.jpeg'
     with open (path, 'wb') as file:
-        file.write(base64.decodebytes(image_blob))
+        file.write(image_blob)
+        file.close()
     return path
 
 @app.route("/imoveis",  methods = ["GET", "POST"])
@@ -32,7 +32,7 @@ def imoveis():
         fotos = Fotos(fotos[0][0], fotos[0][1], fotos[0][2], fotos[0][3], fotos[0][4])
         caracteristicas = CaracteristicasDAO().find_by_id(cursor, imovel[0])
         foto_path = convertImage(fotos.foto, fotos.codigo)
-        foto_path = foto_path[3:]
+        foto_path = foto_path[8:]
         imoveis.append([imovel, fotos, foto_path, caracteristicas])
         
     return render_template("imoveis.html", imoveis=imoveis, back=back)
@@ -50,7 +50,7 @@ def view():
     imagens = []
     for foto in fotos:
         foto_path = convertImage(foto[2], foto[0])
-        foto_path = foto_path[3:]
+        foto_path = foto_path[8:]
         imagens.append([foto, foto_path])
 
 
