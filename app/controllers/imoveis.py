@@ -1,13 +1,11 @@
 from app import app, cnx
-from flask import request, render_template, session
-from werkzeug.utils import redirect
+from flask import request, render_template
 from app.models.imovel_dao import ImovelDAO
 from app.models.fotos_dao import FotosDAO, Fotos
 from app.models.caracteristicas_dao import CaracteristicasDAO
-from app.decorators import auth
 
 def convertImage(image_blob, id):
-    path = f'app\static\imgs\imoveis\img{id}.jpeg'
+    path = f'/app/app/static/imgs/img{id}.jpeg'
     with open (path, 'wb') as file:
         file.write(image_blob)
         file.close()
@@ -24,7 +22,6 @@ def imoveis():
         back = False
     
     else:
-        # arrumar depois
         tipo_imovel = request.form.getlist('tipoImovel')[0]
         cursor.callproc('selectImoveisPorTipo', [tipo_imovel])
         result = cursor.fetchall()
@@ -35,19 +32,15 @@ def imoveis():
         fotos = Fotos(fotos[0][0], fotos[0][1], fotos[0][2], fotos[0][3], fotos[0][4])
         caracteristicas = CaracteristicasDAO().find_by_id(cursor, imovel[0])
         foto_path = convertImage(fotos.foto, fotos.codigo)
-        foto_path = foto_path[3:]
+        foto_path = foto_path[8:]
         imoveis.append([imovel, fotos, foto_path, caracteristicas])
-
-    #print(imoveis)
         
     return render_template("imoveis.html", imoveis=imoveis, back=back)
 
 @app.route("/view",  methods = ["GET", "POST"])
 def view():
     codigo = request.args.get('imovel', None)
-    #print(codigo)
-
-    # arrumar dps
+    
     cursor = cnx.connection.cursor()
     sql = f"SELECT * FROM anuncio WHERE codigo = '{codigo}'"
     cursor.execute(sql)
@@ -57,7 +50,7 @@ def view():
     imagens = []
     for foto in fotos:
         foto_path = convertImage(foto[2], foto[0])
-        foto_path = foto_path[3:]
+        foto_path = foto_path[8:]
         imagens.append([foto, foto_path])
 
 

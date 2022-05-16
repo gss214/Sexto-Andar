@@ -1,4 +1,3 @@
-import re
 from app import app, cnx
 from flask import request, render_template, session
 from werkzeug.utils import redirect

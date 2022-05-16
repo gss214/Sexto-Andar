@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    container_name: sextoandar
+    build: ./
+    links:
+      - db
+    ports:
+      - "5000:5000"
+  db:
+    container_name: sextoandar_db
+    image: mysql:5.6
+    command: --secure-file-priv='/var/lib/mysql'
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./db:/docker-entrypoint-migratedb.d/:ro
+      - ./imagens:/var/lib/mysql 
