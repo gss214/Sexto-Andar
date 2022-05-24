@@ -33,6 +33,6 @@ password: 12345
 ## Project Overview
 
 <div><a>
-  <img src="https://github.com/gss214/Sexto-Andar/blob/main/imagens/sexto-andar-overview.gif" width='500'>
-  <img src="https://github.com/gss214/Sexto-Andar/blob/main/imagens/sexto-andar-crud.gif" width='500'>
+  <img src="https://github.com/gss214/Sexto-Andar/blob/main/imagens/sexto-andar-overview.gif" width='420'>
+  <img src="https://github.com/gss214/Sexto-Andar/blob/main/imagens/sexto-andar-crud.gif" width='420'>
 </a></div>
