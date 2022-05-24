@@ -4,8 +4,7 @@
 
 Final Project of Database Management Course at UnB in 2021.1. \
 University of Brasilia, Institute of Exact Sciences, Computer Science Department. \
-Theory and Application of Graphs - 2020.2. \
-Developed by: Guilherme Silva Souza and [Maria Eduarda Machado de Holanda](https://github.com/dudaholandah). \
+Developed by: [Guilherme Silva Souza](https://github.com/gss214) and [Maria Eduarda Machado de Holanda](https://github.com/dudaholandah). \
 Technologies used: Python, Flask, MySQL, Docker.
 
 ## Description
